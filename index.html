@@ -522,6 +522,7 @@
 
     let matrixColumns = [];
     let matrixFontSize = 22;
+    let lastMatrixTime = 0;
     const matrixChars = "{}[]()<>/#$=+-_*0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
     function randomMatrixChar() {
@@ -547,9 +548,11 @@
       }));
     }
 
-    function drawMatrix() {
+    function drawMatrix(timestamp) {
       const width = window.innerWidth;
       const height = window.innerHeight;
+      const deltaSeconds = lastMatrixTime ? Math.min((timestamp - lastMatrixTime) / 1000, 0.05) : 1 / 60;
+      lastMatrixTime = timestamp;
 
       matrixContext.fillStyle = "rgba(3, 8, 15, 0.22)";
       matrixContext.fillRect(0, 0, width, height);
@@ -566,7 +569,7 @@
         matrixContext.fillStyle = "rgba(138, 216, 255, 0.05)";
         matrixContext.fillText(randomMatrixChar(), x, column.y - matrixFontSize * 1.4);
 
-        column.y += matrixFontSize * column.speed * 0.07;
+        column.y += matrixFontSize * column.speed * deltaSeconds * 4.2;
 
         if (column.y > height + matrixFontSize * 2) {
           column.y = -Math.random() * height * 0.35;
