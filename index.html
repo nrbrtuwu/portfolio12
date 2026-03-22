@@ -139,6 +139,12 @@
       max-width: 8ch;
     }
 
+    .subject-title.long-title {
+      font-size: clamp(1.9rem, 3.8vw, 3.6rem);
+      max-width: 9ch;
+      line-height: 0.98;
+    }
+
     .author,
     .lead,
     .detail,
@@ -263,24 +269,27 @@
 
     .subject-slide .content {
       display: grid;
-      grid-template-columns: minmax(320px, 0.78fr) minmax(520px, 1.22fr);
-      gap: 44px;
+      width: min(1560px, 100%);
+      grid-template-columns: minmax(180px, 0.34fr) minmax(900px, 1.66fr);
+      gap: 220px;
       align-items: center;
     }
 
     .subject-context {
       display: inline-flex;
-      gap: 12px;
-      flex-wrap: wrap;
+      gap: 10px;
+      flex-wrap: nowrap;
       color: var(--muted);
-      font-size: 0.95rem;
+      font-size: 0.86rem;
       letter-spacing: 0.06em;
       text-transform: uppercase;
+      white-space: nowrap;
     }
 
     .subject-context span {
       padding-bottom: 10px;
       border-bottom: 1px solid var(--soft-line);
+      white-space: nowrap;
     }
 
     .subject-detail {
@@ -290,7 +299,7 @@
 
     .subject-copy {
       display: grid;
-      gap: 26px;
+      gap: 20px;
       align-content: center;
     }
 
@@ -306,6 +315,28 @@
       box-shadow:
         0 28px 80px rgba(0, 0, 0, 0.34),
         inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    }
+
+    .preview-frame.has-image {
+      min-height: auto;
+      background: transparent;
+      border: 1px solid rgba(138, 216, 255, 0.14);
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.28);
+      display: block;
+    }
+
+    .preview-frame.has-image::before,
+    .preview-frame.has-image::after {
+      display: none;
+    }
+
+    .preview-image {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-height: 82vh;
+      object-fit: contain;
+      background: rgba(5, 10, 16, 0.55);
     }
 
     .preview-frame::before {
@@ -455,6 +486,7 @@
 
       .subject-slide .content {
         grid-template-columns: 1fr;
+        gap: 40px;
       }
 
       .preview-frame {
@@ -473,11 +505,6 @@
 
       .semester-list li {
         flex-direction: column;
-      }
-
-      .subject-context {
-        flex-direction: column;
-        gap: 6px;
       }
 
       .preview-ui {
@@ -657,6 +684,38 @@
       };
     }
 
+    function extractLeadingNumber(value) {
+      const match = value.match(/^(\d+)/);
+      return match ? match[1] : "";
+    }
+
+    async function findProjectImagePath(yearTitle, semesterTitle, projectIndex) {
+      const yearNumber = extractLeadingNumber(yearTitle);
+      const semesterNumber = extractLeadingNumber(semesterTitle);
+
+      if (!yearNumber || !semesterNumber) {
+        return "";
+      }
+
+      const basePath = `./assets/${yearNumber}-evfolyam/${semesterNumber}-felev/project-${yearNumber}-${semesterNumber}-${projectIndex + 1}`;
+      const extensions = ["png", "jpg", "jpeg", "webp"];
+
+      for (const extension of extensions) {
+        const candidate = `${basePath}.${extension}`;
+
+        try {
+          const response = await fetch(candidate, { method: "HEAD" });
+          if (response.ok) {
+            return candidate;
+          }
+        } catch (_error) {
+          // Ignore missing local asset probes and keep falling back.
+        }
+      }
+
+      return "";
+    }
+
     function parsePortfolioMarkdown(markdown) {
       const years = [];
       let currentYear = null;
@@ -774,9 +833,32 @@
       `;
     }
 
-    function renderSubjectSlide(yearTitle, semesterTitle, project) {
+    function renderSubjectSlide(yearTitle, semesterTitle, project, projectIndex, projectCount, projectImagePath) {
       const theme = previewTheme(project);
       const navItems = theme.nav.map((item) => `<span>${escapeHtml(item)}</span>`).join("");
+      const previewImage = projectImagePath
+        ? `linear-gradient(135deg, rgba(20, 37, 58, 0.24), rgba(8, 12, 20, 0.58)), url('${projectImagePath}')`
+        : theme.image;
+      const titleClass = project.title.length > 18 ? "subject-title long-title" : "subject-title";
+      const previewMarkup = projectImagePath
+        ? `
+              <div class="preview-frame has-image">
+                <img class="preview-image" src="${projectImagePath}" alt="${escapeHtml(project.title)}">
+              </div>
+            `
+        : `
+              <div class="preview-frame" style="--preview-image: ${previewImage};">
+                <div class="preview-ui">
+                  <div class="preview-brand">Főoldal</div>
+                  <div class="preview-nav">${navItems}</div>
+                </div>
+                <div class="preview-copy">
+                  <h4 class="preview-title">${escapeHtml(theme.previewTitle)}</h4>
+                  <p class="preview-subtitle">Tantárgyi projektmunka bemutató</p>
+                  <div class="preview-mark"></div>
+                </div>
+              </div>
+            `;
 
       return `
         <section>
@@ -786,29 +868,18 @@
                 <div class="subject-context">
                   <span>${escapeHtml(yearTitle)}</span>
                   <span>${escapeHtml(semesterTitle)}</span>
-                  <span>Tantárgy</span>
+                  <span>${projectIndex + 1}/${projectCount} projekt</span>
                 </div>
-                <h3 class="subject-title">${escapeHtml(project.title)}</h3>
-                ${project.detail ? `<p class="subject-detail">${escapeHtml(project.detail)}</p>` : ""}
+                <h3 class="${titleClass}">${escapeHtml(project.title)}</h3>
               </div>
-              <div class="preview-frame" style="--preview-image: ${theme.image};">
-                <div class="preview-ui">
-                  <div class="preview-brand">Főoldal</div>
-                  <div class="preview-nav">${navItems}</div>
-                </div>
-                <div class="preview-copy">
-                  <h4 class="preview-title">${escapeHtml(theme.previewTitle)}</h4>
-                  <p class="preview-subtitle">${escapeHtml(theme.previewSubtitle)}</p>
-                  <div class="preview-mark"></div>
-                </div>
-              </div>
+              ${previewMarkup}
             </div>
           </div>
         </section>
       `;
     }
 
-    function buildDeck(years) {
+    async function buildDeck(years) {
       const sections = [];
 
       for (const year of years) {
@@ -817,8 +888,18 @@
         for (const semester of year.semesters) {
           verticalSlides.push(renderSemesterIntro(year.title, semester));
 
-          for (const project of semester.projects) {
-            verticalSlides.push(renderSubjectSlide(year.title, semester.title, project));
+          for (const [projectIndex, project] of semester.projects.entries()) {
+            const projectImagePath = await findProjectImagePath(year.title, semester.title, projectIndex);
+            verticalSlides.push(
+              renderSubjectSlide(
+                year.title,
+                semester.title,
+                project,
+                projectIndex,
+                semester.projects.length,
+                projectImagePath
+              )
+            );
           }
 
           verticalSlides.push(renderSemesterSummary(year.title, semester));
@@ -856,7 +937,7 @@
 
         const markdown = await response.text();
         const years = parsePortfolioMarkdown(markdown);
-        buildDeck(years);
+        await buildDeck(years);
       } catch (error) {
         renderError(error.message);
       }
