@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfólió | Bodor Norbert Bence</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css">
+  <style>
+    :root {
+      --bg: #08111c;
+      --bg-deep: #03080f;
+      --bg-warm: #16283d;
+      --text: #f3f7fb;
+      --muted: #9db0c3;
+      --accent: #8ad8ff;
+      --accent-strong: #36b6ff;
+      --line: rgba(255, 255, 255, 0.12);
+      --soft-line: rgba(255, 255, 255, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      min-height: 100%;
+      background:
+        radial-gradient(circle at 12% 18%, rgba(54, 182, 255, 0.12), transparent 22%),
+        radial-gradient(circle at 88% 20%, rgba(138, 216, 255, 0.08), transparent 20%),
+        linear-gradient(160deg, var(--bg-deep) 0%, var(--bg) 45%, var(--bg-warm) 100%);
+      color: var(--text);
+      font-family: "IBM Plex Sans", sans-serif;
+    }
+
+    #matrix-bg {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.14;
+    }
+
+    .reveal {
+      position: relative;
+      z-index: 1;
+      color: var(--text);
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 16px;
+    }
+
+    .reveal .slides {
+      text-align: left;
+    }
+
+    .reveal .slides section {
+      height: 100%;
+      padding: 0;
+    }
+
+    .slide {
+      position: relative;
+      min-height: 100vh;
+      padding: 6vh 7vw 10vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .title-slide {
+      align-items: flex-start;
+      text-align: left;
+      justify-content: flex-end;
+      padding-bottom: 14vh;
+    }
+
+    .center-slide {
+      align-items: center;
+      text-align: center;
+      justify-content: center;
+      padding-top: 6vh;
+      padding-bottom: 6vh;
+    }
+
+    .content {
+      position: relative;
+      z-index: 1;
+      width: min(1300px, 100%);
+    }
+
+    .center-slide .content {
+      max-width: 980px;
+    }
+
+    .eyebrow {
+      margin: 0 0 18px;
+      color: var(--accent);
+      font-size: 0.92rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+    }
+
+    .hero-title,
+    .year-title,
+    .semester-title,
+    .subject-title {
+      margin: 0;
+      font-family: "Sora", sans-serif;
+      letter-spacing: -0.06em;
+      line-height: 0.92;
+      text-wrap: balance;
+    }
+
+    .hero-title {
+      font-size: clamp(4rem, 11vw, 9rem);
+      max-width: 10ch;
+    }
+
+    .year-title {
+      font-size: clamp(3.3rem, 9vw, 7.4rem);
+      max-width: 8ch;
+    }
+
+    .semester-title {
+      font-size: clamp(2.6rem, 5.6vw, 4.8rem);
+      max-width: 9ch;
+    }
+
+    .subject-title {
+      font-size: clamp(2.3rem, 4.9vw, 4.6rem);
+      max-width: 8ch;
+    }
+
+    .author,
+    .lead,
+    .detail,
+    .summary,
+    .subject-detail {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 72ch;
+    }
+
+    .author {
+      margin-top: 24px;
+      font-size: clamp(1rem, 1.5vw, 1.35rem);
+    }
+
+    .lead {
+      margin-top: 28px;
+      font-size: clamp(1rem, 1.25vw, 1.18rem);
+    }
+
+    .semester-centered-title {
+      max-width: none;
+      font-size: clamp(3.1rem, 6.2vw, 5.2rem);
+    }
+
+    .semester-intro {
+      margin: 28px auto 0;
+      max-width: 34ch;
+      font-size: clamp(1.05rem, 1.45vw, 1.35rem);
+      line-height: 1.7;
+      color: var(--muted);
+      text-wrap: balance;
+    }
+
+    .semester-meta {
+      margin-top: 28px;
+      color: rgba(157, 176, 195, 0.62);
+      font-size: clamp(0.92rem, 1.05vw, 1.02rem);
+      letter-spacing: 0.01em;
+    }
+
+    .title-slide .content {
+      max-width: 1300px;
+    }
+
+    .year-slide {
+      justify-content: flex-end;
+      padding-bottom: 14vh;
+    }
+
+    .year-index {
+      display: flex;
+      gap: 18px;
+      align-items: baseline;
+      margin-top: 22px;
+      padding-top: 20px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .split-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
+      gap: 56px;
+      align-items: start;
+    }
+
+    .column {
+      min-width: 0;
+    }
+
+    .text-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .semester-list {
+      margin: 36px 0 0;
+      padding: 0;
+      list-style: none;
+      border-top: 1px solid var(--soft-line);
+    }
+
+    .semester-list li {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--soft-line);
+      color: var(--text);
+      font-size: 1rem;
+    }
+
+    .semester-list li span:last-child {
+      color: var(--muted);
+    }
+
+    .summary-block {
+      margin-top: 30px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+    }
+
+    .summary-label,
+    .section-label {
+      margin: 0 0 10px;
+      color: var(--accent);
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .subject-slide {
+      justify-content: center;
+      padding-top: 8vh;
+      padding-bottom: 8vh;
+    }
+
+    .subject-slide .content {
+      display: grid;
+      grid-template-columns: minmax(320px, 0.78fr) minmax(520px, 1.22fr);
+      gap: 44px;
+      align-items: center;
+    }
+
+    .subject-context {
+      display: inline-flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-size: 0.95rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .subject-context span {
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--soft-line);
+    }
+
+    .subject-detail {
+      font-size: clamp(1rem, 1.15vw, 1.12rem);
+      max-width: 34ch;
+    }
+
+    .subject-copy {
+      display: grid;
+      gap: 26px;
+      align-content: center;
+    }
+
+    .preview-frame {
+      position: relative;
+      min-height: min(72vh, 720px);
+      border-radius: 34px;
+      overflow: hidden;
+      border: 1px solid rgba(138, 216, 255, 0.12);
+      background:
+        linear-gradient(180deg, rgba(22, 33, 51, 0.88), rgba(10, 16, 26, 0.95)),
+        linear-gradient(120deg, rgba(54, 182, 255, 0.08), transparent 34%);
+      box-shadow:
+        0 28px 80px rgba(0, 0, 0, 0.34),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    }
+
+    .preview-frame::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(4, 9, 15, 0.15), rgba(4, 9, 15, 0.62)),
+        var(--preview-image, radial-gradient(circle at 40% 30%, rgba(255, 255, 255, 0.12), transparent 22%), linear-gradient(135deg, #25364c, #0c1522));
+      background-size: cover;
+      background-position: center;
+      transform: scale(1.02);
+    }
+
+    .preview-frame::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(9, 13, 20, 0.36), rgba(9, 13, 20, 0.08) 24%, rgba(9, 13, 20, 0.44) 100%);
+    }
+
+    .preview-ui,
+    .preview-copy {
+      position: relative;
+      z-index: 1;
+    }
+
+    .preview-ui {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+      padding: 26px 32px 0;
+      color: rgba(255, 255, 255, 0.88);
+    }
+
+    .preview-brand {
+      font-family: "Sora", sans-serif;
+      font-size: 0.88rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .preview-nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 22px;
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.74);
+    }
+
+    .preview-copy {
+      position: absolute;
+      left: 32px;
+      right: 32px;
+      bottom: 34px;
+      display: grid;
+      gap: 14px;
+      max-width: 70%;
+    }
+
+    .preview-title {
+      margin: 0;
+      font-family: "Sora", sans-serif;
+      font-size: clamp(1.7rem, 2.3vw, 2.6rem);
+      line-height: 1.04;
+      letter-spacing: -0.05em;
+      text-wrap: balance;
+    }
+
+    .preview-subtitle {
+      margin: 0;
+      font-size: clamp(0.92rem, 0.98vw, 1.02rem);
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.86);
+    }
+
+    .preview-mark {
+      width: 56px;
+      height: 4px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.92);
+      box-shadow: 0 0 24px rgba(255, 255, 255, 0.22);
+    }
+
+    .summary-slide .content {
+      max-width: 900px;
+    }
+
+    .summary-copy {
+      display: grid;
+      gap: 24px;
+      justify-items: center;
+    }
+
+    .summary-title {
+      margin: 0;
+      font-family: "Sora", sans-serif;
+      font-size: clamp(2.5rem, 4.8vw, 4.2rem);
+      line-height: 0.96;
+      letter-spacing: -0.05em;
+      text-wrap: balance;
+    }
+
+    .summary-text {
+      margin: 0;
+      max-width: 34ch;
+      color: var(--muted);
+      font-size: clamp(1rem, 1.25vw, 1.22rem);
+      line-height: 1.8;
+      text-wrap: balance;
+    }
+
+    .empty-state {
+      max-width: 760px;
+    }
+
+    .reveal .progress {
+      height: 4px;
+      color: var(--accent-strong);
+      background: rgba(255, 255, 255, 0.07);
+    }
+
+    .reveal .controls {
+      color: var(--accent);
+    }
+
+    .reveal .slide-number {
+      right: 24px;
+      top: 18px;
+      bottom: auto;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(3, 8, 15, 0.72);
+      color: var(--muted);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 0.8rem;
+    }
+
+    @media (max-width: 980px) {
+      .split-layout {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+
+      .subject-slide .content {
+        grid-template-columns: 1fr;
+      }
+
+      .preview-frame {
+        min-height: 480px;
+      }
+
+      .preview-copy {
+        max-width: none;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .slide {
+        padding: 5vh 6vw 12vh;
+      }
+
+      .semester-list li {
+        flex-direction: column;
+      }
+
+      .subject-context {
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .preview-ui {
+        padding: 22px 22px 0;
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .preview-nav {
+        gap: 12px;
+        justify-content: flex-start;
+      }
+
+      .preview-copy {
+        left: 22px;
+        right: 22px;
+        bottom: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="matrix-bg" aria-hidden="true"></canvas>
+  <div class="reveal">
+    <div class="slides" id="slides">
+      <section>
+        <div class="slide title-slide">
+          <div class="content">
+            <h1 class="hero-title">Portfólió</h1>
+            <p class="author">Készítette: Bodor Norbert Bence</p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js"></script>
+  <script>
+    const matrixCanvas = document.getElementById("matrix-bg");
+    const matrixContext = matrixCanvas.getContext("2d");
+    const slidesRoot = document.getElementById("slides");
+
+    let matrixColumns = [];
+    let matrixFontSize = 22;
+    const matrixChars = "{}[]()<>/#$=+-_*0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+    function randomMatrixChar() {
+      return matrixChars[Math.floor(Math.random() * matrixChars.length)];
+    }
+
+    function resizeMatrix() {
+      const dpr = window.devicePixelRatio || 1;
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+
+      matrixCanvas.width = width * dpr;
+      matrixCanvas.height = height * dpr;
+      matrixCanvas.style.width = `${width}px`;
+      matrixCanvas.style.height = `${height}px`;
+      matrixContext.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+      matrixFontSize = Math.max(18, Math.min(24, Math.floor(width / 75)));
+      const columnCount = Math.ceil(width / matrixFontSize);
+      matrixColumns = Array.from({ length: columnCount }, () => ({
+        y: Math.random() * -height,
+        speed: 0.7 + Math.random() * 1.1
+      }));
+    }
+
+    function drawMatrix() {
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+
+      matrixContext.fillStyle = "rgba(3, 8, 15, 0.22)";
+      matrixContext.fillRect(0, 0, width, height);
+      matrixContext.font = `${matrixFontSize}px IBM Plex Sans`;
+      matrixContext.textBaseline = "top";
+
+      matrixColumns.forEach((column, index) => {
+        const x = index * matrixFontSize;
+        const glyph = randomMatrixChar();
+
+        matrixContext.fillStyle = "rgba(54, 182, 255, 0.18)";
+        matrixContext.fillText(glyph, x, column.y);
+
+        matrixContext.fillStyle = "rgba(138, 216, 255, 0.05)";
+        matrixContext.fillText(randomMatrixChar(), x, column.y - matrixFontSize * 1.4);
+
+        column.y += matrixFontSize * column.speed * 0.07;
+
+        if (column.y > height + matrixFontSize * 2) {
+          column.y = -Math.random() * height * 0.35;
+          column.speed = 0.7 + Math.random() * 1.1;
+        }
+      });
+
+      window.requestAnimationFrame(drawMatrix);
+    }
+
+    function escapeHtml(value) {
+      return value
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#39;");
+    }
+
+    function parseSubject(raw) {
+      const match = raw.match(/^(.*?)\s*\((.+)\)\s*$/);
+      if (!match) {
+        return { title: raw.trim(), detail: "" };
+      }
+
+      return {
+        title: match[1].trim(),
+        detail: match[2].trim()
+      };
+    }
+
+    function slugFromText(value) {
+      return value
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-+|-+$/g, "");
+    }
+
+    function previewTheme(project) {
+      const key = slugFromText(project.title + " " + project.detail);
+
+      if (key.includes("halozat") || key.includes("cisco") || key.includes("szerver")) {
+        return {
+          image: "linear-gradient(135deg, rgba(20, 37, 58, 0.2), rgba(8, 12, 20, 0.56)), url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1400&q=80')",
+          nav: ["Topológia", "Eszközök", "Csomagok", "Dokumentáció"],
+          previewTitle: "Hálózati projektoldal",
+          previewSubtitle: project.detail || "Cisco Packet Tracer feladat és dokumentáció"
+        };
+      }
+
+      if (key.includes("adatbazis")) {
+        return {
+          image: "linear-gradient(135deg, rgba(20, 37, 58, 0.24), rgba(8, 12, 20, 0.58)), url('https://images.unsplash.com/photo-1544383835-bda2bc66a55d?auto=format&fit=crop&w=1400&q=80')",
+          nav: ["Adatok", "Lekérdezések", "Kapcsolatok", "Admin"],
+          previewTitle: "Adatbázis alapú weboldal",
+          previewSubtitle: project.detail || "Frontend felület adatbázis-háttérrel"
+        };
+      }
+
+      if (key.includes("fizika")) {
+        return {
+          image: "linear-gradient(135deg, rgba(20, 37, 58, 0.24), rgba(8, 12, 20, 0.58)), url('https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=1400&q=80')",
+          nav: ["Számítás", "Grafikon", "Modell", "Eredmények"],
+          previewTitle: "Interaktív számítási oldal",
+          previewSubtitle: project.detail || "Fizikához kapcsolódó projektmunka"
+        };
+      }
+
+      if (key.includes("ikt") || key.includes("ppt") || key.includes("prezi")) {
+        return {
+          image: "linear-gradient(135deg, rgba(20, 37, 58, 0.24), rgba(8, 12, 20, 0.58)), url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1400&q=80')",
+          nav: ["Összefoglaló", "Vázlat", "Képek", "Előadás"],
+          previewTitle: "Bemutató és összefoglaló oldal",
+          previewSubtitle: project.detail || "Prezentációs és dokumentációs anyag"
+        };
+      }
+
+      return {
+        image: "linear-gradient(135deg, rgba(20, 37, 58, 0.24), rgba(8, 12, 20, 0.58)), url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1400&q=80')",
+        nav: ["Főoldal", "Projekt", "Tartalom", "Kapcsolat"],
+        previewTitle: project.title,
+        previewSubtitle: project.detail || "Tantárgyi projektmunka bemutató weboldal"
+      };
+    }
+
+    function parsePortfolioMarkdown(markdown) {
+      const years = [];
+      let currentYear = null;
+      let currentSemester = null;
+      let inProjects = false;
+
+      for (const rawLine of markdown.split(/\r?\n/)) {
+        const line = rawLine.trim();
+
+        if (!line || line === "---") {
+          inProjects = false;
+          continue;
+        }
+
+        if (line.startsWith("# ")) {
+          currentYear = {
+            title: line.slice(2).trim(),
+            semesters: []
+          };
+          years.push(currentYear);
+          currentSemester = null;
+          inProjects = false;
+          continue;
+        }
+
+        if (line.startsWith("## ")) {
+          currentSemester = {
+            title: line.slice(3).trim(),
+            intro: [],
+            projects: [],
+            summary: ""
+          };
+
+          if (currentYear) {
+            currentYear.semesters.push(currentSemester);
+          }
+
+          inProjects = false;
+          continue;
+        }
+
+        if (!currentSemester) {
+          continue;
+        }
+
+        if (line === "**Projektek**:" || line === "**Projektek:**") {
+          inProjects = true;
+          continue;
+        }
+
+        if (line.startsWith("**Félévi összegzés**:")) {
+          currentSemester.summary = line.replace("**Félévi összegzés**:", "").trim();
+          inProjects = false;
+          continue;
+        }
+
+        if (inProjects && line.startsWith("- ")) {
+          currentSemester.projects.push(parseSubject(line.slice(2).trim()));
+          continue;
+        }
+
+        if (!inProjects) {
+          currentSemester.intro.push(line);
+        }
+      }
+
+      return years;
+    }
+
+    function renderYearSlide(year) {
+      return `
+        <section>
+          <div class="slide year-slide">
+            <div class="content">
+              <p class="eyebrow">Évfolyam</p>
+              <h2 class="year-title">${escapeHtml(year.title)}</h2>
+              <div class="year-index">
+                <span>${year.semesters.length} félév</span>
+                <span>${year.semesters.reduce((count, semester) => count + semester.projects.length, 0)} tantárgyi dia</span>
+              </div>
+            </div>
+          </div>
+        </section>
+      `;
+    }
+
+    function renderSemesterIntro(yearTitle, semester) {
+      const introText = semester.intro.join(" ");
+
+      return `
+        <section>
+          <div class="slide center-slide">
+            <div class="content">
+              <p class="eyebrow">${escapeHtml(yearTitle)}</p>
+              <h3 class="semester-title semester-centered-title">${escapeHtml(semester.title)}</h3>
+              <p class="semester-intro">${escapeHtml(introText || "Ehhez a félévhez még nem került külön leírás.")}</p>
+              <p class="semester-meta">${semester.projects.length} projekt ebben a félévben</p>
+            </div>
+          </div>
+        </section>
+      `;
+    }
+
+    function renderSemesterSummary(yearTitle, semester) {
+      return `
+        <section>
+          <div class="slide center-slide summary-slide">
+            <div class="content summary-copy">
+              <p class="eyebrow">${escapeHtml(yearTitle)} · ${escapeHtml(semester.title)}</p>
+              <h3 class="summary-title">Félévi összegzés</h3>
+              <p class="summary-text">${escapeHtml(semester.summary || "Ehhez a félévhez még nem került összegzés.")}</p>
+            </div>
+          </div>
+        </section>
+      `;
+    }
+
+    function renderSubjectSlide(yearTitle, semesterTitle, project) {
+      const theme = previewTheme(project);
+      const navItems = theme.nav.map((item) => `<span>${escapeHtml(item)}</span>`).join("");
+
+      return `
+        <section>
+          <div class="slide subject-slide">
+            <div class="content">
+              <div class="subject-copy">
+                <div class="subject-context">
+                  <span>${escapeHtml(yearTitle)}</span>
+                  <span>${escapeHtml(semesterTitle)}</span>
+                  <span>Tantárgy</span>
+                </div>
+                <h3 class="subject-title">${escapeHtml(project.title)}</h3>
+                ${project.detail ? `<p class="subject-detail">${escapeHtml(project.detail)}</p>` : ""}
+              </div>
+              <div class="preview-frame" style="--preview-image: ${theme.image};">
+                <div class="preview-ui">
+                  <div class="preview-brand">Főoldal</div>
+                  <div class="preview-nav">${navItems}</div>
+                </div>
+                <div class="preview-copy">
+                  <h4 class="preview-title">${escapeHtml(theme.previewTitle)}</h4>
+                  <p class="preview-subtitle">${escapeHtml(theme.previewSubtitle)}</p>
+                  <div class="preview-mark"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      `;
+    }
+
+    function buildDeck(years) {
+      const sections = [];
+
+      for (const year of years) {
+        const verticalSlides = [renderYearSlide(year)];
+
+        for (const semester of year.semesters) {
+          verticalSlides.push(renderSemesterIntro(year.title, semester));
+
+          for (const project of semester.projects) {
+            verticalSlides.push(renderSubjectSlide(year.title, semester.title, project));
+          }
+
+          verticalSlides.push(renderSemesterSummary(year.title, semester));
+        }
+
+        sections.push(`<section>${verticalSlides.join("")}</section>`);
+      }
+
+      slidesRoot.insertAdjacentHTML("beforeend", sections.join(""));
+    }
+
+    function renderError(message) {
+      slidesRoot.insertAdjacentHTML(
+        "beforeend",
+        `
+          <section>
+            <div class="slide">
+              <div class="content empty-state">
+                <p class="eyebrow">Hiba</p>
+                <h2 class="year-title">Nem sikerult betolteni a portfolio tartalmat</h2>
+                <p class="lead">${escapeHtml(message)}</p>
+              </div>
+            </div>
+          </section>
+        `
+      );
+    }
+
+    async function initPresentation() {
+      try {
+        const response = await fetch("./Portf%C3%B3li%C3%B3.md");
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}`);
+        }
+
+        const markdown = await response.text();
+        const years = parsePortfolioMarkdown(markdown);
+        buildDeck(years);
+      } catch (error) {
+        renderError(error.message);
+      }
+
+      Reveal.initialize({
+        hash: true,
+        controls: true,
+        progress: true,
+        center: false,
+        slideNumber: "c/t",
+        transition: "slide",
+        transitionSpeed: "slow",
+        backgroundTransition: "slide",
+        navigationMode: "default",
+        autoAnimateDuration: 0.8,
+        autoAnimateEasing: "ease-out",
+        width: 1440,
+        height: 900,
+        margin: 0,
+        minScale: 0.55,
+        maxScale: 1.4
+      });
+    }
+
+    resizeMatrix();
+    window.addEventListener("resize", resizeMatrix);
+    window.requestAnimationFrame(drawMatrix);
+    initPresentation();
+  </script>
+</body>
+</html>
