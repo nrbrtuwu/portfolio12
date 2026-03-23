@@ -11,7 +11,7 @@ Itt vezettem be magam igazán a HTML-be és a különféle tantárgyakba amit ez
 **Félévi összegzés**: Ezek a projektek még csak a jéghegy tetején voltak, nem kellett semmi olyan nehéz dolgot elkészíteni.
 
 ## 2. Félév
-Párban kellett dolgozni, ezzel is kitanulva a csapatmunka lényegét. Csapattársam ebben a félévben a Martin volt.
+Párban kellett dolgozni, ezzel is kitanulva a csapatmunka lényegét. Csapattársam ebben a félévben Martin volt.
 
 **Projektek**:
 - Digitális kultúra (elveszett a projekt)
@@ -24,7 +24,7 @@ Párban kellett dolgozni, ezzel is kitanulva a csapatmunka lényegét. Csapattá
 # 10. évfolyam
 
 ## 1. Félév
-Itt kezdődött el igazán a szakmai tárgyak tanulása. Ekkor lett Hálózatunk (ITA), ami végre egy kihívást is nyújtott az akkori félévben. Megint csak csapatban dolgoztunk, és a Zalánnal voltam egy csapatban.
+Itt kezdődött el igazán a szakmai tárgyak tanulása. Ekkor lett Hálózatunk (ITA), ami végre egy kihívást is nyújtott az akkori félévben. Megint csak csapatban dolgoztunk, és Zalánnal voltam egy csapatban.
 
 **Projektek**:
 - Fizika (Excel programozás)
@@ -35,7 +35,7 @@ Itt kezdődött el igazán a szakmai tárgyak tanulása. Ekkor lett Hálózatunk
 **Félévi összegzés**: Csapatmunka finomítása (már ami volt :D). Az ITA végre valami nehezebb feladatot is adott.
 
 ## 2. Félév
-Eljött az a félév, ahol nem volt rendes tantárgyi projekt, hanem csak szakmai tárgyakból voltak feladataink. Itt már a Márk volt a csapattársam.
+Eljött az a félév, ahol nem volt rendes tantárgyi projekt, hanem csak szakmai tárgyakból voltak feladataink. Itt már Márk volt a csapattársam.
 
 **Projektek**:
 - Fizika (excel program)
@@ -43,7 +43,7 @@ Eljött az a félév, ahol nem volt rendes tantárgyi projekt, hanem csak szakma
 - ITA I. (Cisco PT hálózat elkészítése)
 - Programozási alapok (Weblap, illetve játék elkészítése)
 
-**Félévi összegzés**: Ez volt az első élvezetes félévi projektem, minden feladatot könnyedén megoldottuk, sehol nem akadtunk el. Ekkor kezdtük el használni a Prezi-t mint prezentáció készítő és bemutató.
+**Félévi összegzés**: Ez volt az első élvezetes félévi projektem, minden feladatot könnyedén megoldottuk, sehol nem akadtunk el. Ekkor kezdtük el használni Prezit mint prezentáció készítő és bemutató.
 
 ---
 # 11. évfolyam
@@ -80,7 +80,7 @@ Ez volt szerintem az eddigi éveim legidőigényesebb féléve projektek szempon
 **Projektek**:
 - Hálózatok (II. Világháborús hálózat és ahhoz tartozó feladatok)
 - IKT (Összefoglaló PPT, Dokumentáció)
-- Szerver és felhősz. (II. Vháborús Szerverek)
+- Szerver és felhősz. (II. Világháborús Szerverek)
 
 **Félévi összegzés**: Az összefoglaló nem volt olyan jó mint az előző, de attól még szerintem megint nagyon jól teljesítettünk.
 
