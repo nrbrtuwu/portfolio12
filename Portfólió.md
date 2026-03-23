@@ -49,12 +49,11 @@ Eljött az a félév, ahol nem volt rendes tantárgyi projekt, hanem csak szakma
 # 11. évfolyam
 
 ## 1. Félév
-Nem sokkal másabb mint az előző tanév 2. Félévi feladatok. Viszont lett egy új tantárgyunk ami az **Adatbázis kezelés** volt. Ismét csapatmunka a Márkkal
+Nem sokkal másabb mint az előző tanév 2. Félévi feladatok. Viszont lett egy új tantárgyunk ami az Adatbázis kezelés volt. Ismét csapatmunka Márkkal
 
 **Projektek**:
-- Fizika (Röppálya számolás)
-- Hálózatok (Cisco PT hálózat és ahhoz tartozó feladatok)
-- Adatbázis kezelés (Weblap létrehozása, ami mögött fut egy adatbázis)
+- Hálózatok (Egy első világháború tematikájú hálózat lemodellezése)
+- Adatbázis kezelés (PHP weboldal készítése MySQL adatbázis kapcsolattal)
 - IKT Projekt (Összefoglaló PPT)
 
 **Félévi összegzés**: Elkezdtük prezentációk normális elkészítését és azoknak az előadását, illetve a normális csapatmunkát.
@@ -68,7 +67,7 @@ A kevés feladatok miatt, sokat tudtunk dolgozni a projekteken, így szerintem e
 - ITA I.
 - Programozási alapok
 
-**Félévi összegzés**: Ez volt az első élvezetes félévi projektem, minden feladatot könnyedén megoldottuk, sehol nem akadtunk el. Ekkor kezdtük el használni a Prezi-t mint prezentáció készítő és bemutató.
+**Félévi összegzés**: Ez volt az első élvezetes félévi projektem, minden feladatot könnyedén megoldottuk, sehol nem akadtunk el. Ekkor kezdtük el használni a Prezit mint prezentáció készítő és bemutató.
 
 ---
 

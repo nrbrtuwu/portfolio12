@@ -1,0 +1,436 @@
+html {
+    scroll-behavior: smooth;
+}
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    list-style: none;
+    text-decoration: none;
+}
+body{
+    background: linear-gradient(245.59deg, #143d6a 0%, #10203b 28.53%, #061523 75.52%);
+    background-attachment: fixed;
+}
+header{
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 33px 9%;
+    background: transparent;
+}
+.logo{
+    font-size: 30px;
+    font-weight: 700;
+    color: white;
+}
+.navlist{
+    display: flex;
+}
+.navlist a{
+    color: white;
+    margin-left: 60px;
+    font-size: 15px;
+    font-weight: 600;
+    border-bottom: 2px solid transparent;
+    transition: all .55s ease; 
+}
+.navlist a:Hover{
+    border-bottom: 2px solid white;
+}
+.navlist a.active {
+    border-bottom: 2px solid white;
+}
+header {
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.849), transparent);
+    transition: all 1s ease;
+}
+#menu-icon{
+    color: white;
+    font-size: 35px;
+    z-index: 10001;
+    cursor: pointer;
+    display: none;
+}
+.hero{
+    height: 100%;
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+    gap: 2rem;
+}
+section{
+    padding: 0 19%;
+
+}
+.hero-text h5{
+    font-size: 14px;
+    font-weight: 400;
+    color: white;
+    margin-bottom: 40px;   
+}
+.hero-text h1{
+    font-size: 90px;
+    line-height: 1;
+    color: white;
+    margin: 0 0 45px;
+}
+
+.hero-text p{
+    color: white;
+    font-size: 15px;
+    line-height: 1.9;
+    margin-bottom: 40px;
+}
+.hero-img img{
+    width: 500px;
+    height: auto;   
+}
+.hero-text a{
+    display: inline-block;
+    color: white;
+    background: #143d6a;
+    border: 1px solid transparent;
+    padding: 12px 30px;
+    line-height: 1.4;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 30px;
+    text-transform: uppercase;
+    transition: all .55s ease;
+}
+.hero-text a:hover{
+    background: transparent;
+    border: 1px solid white;
+    transform: translateX(8px);
+}
+.hero-text a.ctaa{
+    background: transparent;
+    border: 1px solid white;
+    margin-left: 20px;
+}
+.hero-text a.ctaa i{
+    vertical-align: middle;
+    margin-right: 5px;
+
+}
+.icons{
+    position: absolute;
+    top: 50%;
+    padding: 0 9%;
+    transform: translateY(-50%);
+}
+.icons i{
+    display: block;
+    margin: 26px 0;
+    font-size: 24px;
+    color: white;
+    transition: all .50s ease;
+}
+.icons i:hover{
+    color: #143d6a;
+    transform: translateY(-5px);
+}
+.scroll-down{
+    position: absolute;
+    bottom: 6%;
+    right: 9%;   
+}
+.scroll-down i{
+    display: block;
+    padding: 12px;
+    font-size: 25px;
+    color: white;
+    background: #21619c;
+    border-radius: 30px;
+    transition: all .50s ease;
+}
+.scroll-down i:hover{
+    transform: translateY(-5px);
+}
+.employes {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 25%;
+}
+
+.employes-person {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 45%;
+}
+
+.employes-text {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.employes-text h1 {
+    font-size: 36px;
+    color: white;
+    margin-bottom: 10px;
+}
+
+.employes-text p {
+    color: white;
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+.employes-image img {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    border-radius: 20px;
+    margin-top: 20px;
+}
+
+@media (max-width: 990px) {
+    .employes {
+        flex-direction: column;
+        align-items: center;
+        padding: 0 3%;
+    }
+
+    .employes-person {
+        max-width: 100%;
+        margin-bottom: 40px;
+    }
+}
+
+
+.services {
+    height: 100%;
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+    display: grid;
+    align-items: center;
+    gap: 2rem;
+}
+
+.services-text {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* középre igazítás */
+}
+
+
+.services-text h1 {
+    text-align: center;
+    font-size: 90px;
+    line-height: 1;
+    color: white;
+    margin-bottom: 30px;
+}
+
+.service {
+    background-color: rgba(255, 255, 255, 0.035);
+    border-radius: 15px;
+    padding: 20px;
+    width: calc(50% - 20px); /* Fél szélesség */
+    margin: 10px; /* Kicsi margó a kártyák között */
+    max-width: 560px; /* Maximum szélesség */
+}
+
+.service h2 {
+    color: white;
+    font-size: 27px;
+    margin-bottom: 10px;
+}
+
+.service p {
+    color: white;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.service ul {
+    padding-left: 20px;
+    color: white;
+}
+
+.service ul li {
+    color: white;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.spacing{
+    height: 20px;
+}
+
+.contact-info {
+    background-color: rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    color: white;
+}
+
+.contact-details p {
+    margin: 5px 0;
+    font-size: 16px;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 50px; /* A rész cím és a tartalom közötti távolság */
+}
+
+.section-title h1 {
+    color: white;
+    font-size: 90px;
+    line-height: 1;
+}
+
+.spacer {
+    padding: 45px;
+}
+
+.section-description {
+    font-size: 21px;
+    line-height: 1.6;
+    color: white;
+    text-align: center;
+    margin: 0 auto; /* középre igazítás */
+    width: 70%; /* példa szélesség, állítsd be a kívánt értékre */
+}
+
+.about {
+    text-align: center;
+    padding: 50px 0;
+}
+
+.gallery {
+    text-align: center;
+    padding: 50px 0;
+}
+
+.gallery-image {
+    width: 70%;
+    margin: 0 auto; /* Középre igazítás */
+}
+
+.gallery-image img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+/* Media lekérdezés */
+@media (max-width: 990px) {
+    .service {
+        width: calc(100% - 20px); /* Teljes szélesség */
+    }
+}
+
+@media (max-width: 1535px){
+    header{
+        padding: 15px 3%;
+        transition: .2s;
+    }
+    .icons{
+        padding: 0 3%;
+        transition: .2s;
+    }
+    .scroll-down{
+        right: 3%;
+        transition: .2s;
+    }
+}
+@media (max-width: 1460px){
+    section{
+        padding: 0 12%;
+        transition: .2s;
+    }
+}
+@media (max-width: 1340px){
+    .hero-img img{
+        width: 350px;
+        height: auto;   
+    }
+    .hero-text h1{
+        font-size: 75px;
+        margin: 0 0 35px;
+    }
+    .hero-text h5{
+        margin-bottom: 25px;
+    }
+}
+@media (max-width: 1195px){
+    section{
+        padding: 0 3%;
+        transition: .2s;
+    }
+    .hero-text{
+        padding-top: 115px;
+    }
+    .hero-img{
+        text-align: center;
+    }
+    .hero-img img{
+        width: 300px;
+        height: auto;
+    }
+    .hero{
+        height: 100%;
+        gap: 1rem;
+        grid-template-columns: 1fr;
+    }
+    .icons{
+        display: none;
+    }
+    .scroll-down{
+        display: none;
+    }
+    .employes {
+        padding: 0 17%;
+    }
+}
+
+@media (max-width: 990px){
+    #menu-icon{
+        display: block;
+    }
+    .navlist{
+        position: absolute;
+        top: 100%;
+        right: -100%;
+        width: 300px;
+        height: 40vh;
+        background: #143d6a;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        padding: 50px 20px;
+        transition: all .55s ease;
+        border-radius: 20px;
+    }
+    .navlist a{
+        margin-left: 0;
+        display: block;
+        margin: 7px 0;
+    }
+    .navlist.open{
+        right: 0;
+    }
+}
+
+@media (max-width: 680px){
+    .hero-img img {
+        width: 100%;
+        height: auto;
+    }
+}

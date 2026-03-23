@@ -1,0 +1,511 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
+
+.bal{
+  float: left;
+  width: 35px;
+  background-color: black;
+  height: 35px;
+  border-radius: 10px;
+  
+}
+
+.jobb{
+  float: right;
+  width: 35px;
+  background-color: black;
+  height: 35px;
+  border-radius: 10px;
+  z-index: 9999;
+}
+
+svg {
+  position: fixed;
+  padding-top: 5px;
+  width: 35px;
+  cursor: pointer; /* Add cursor pointer for better UX */
+}
+
+#top-line1,
+#bottom-line1,
+#middle-line1 {
+	transform-box: fill-box;
+	transform-origin: center;
+}
+
+#top-line2,
+#bottom-line2,
+#middle-line2 {
+	transform-box: fill-box;
+	transform-origin: center;
+}
+
+@keyframes up-rotate {
+	0% {
+		animation-timing-function: cubic-bezier(0.16, -0.88, 0.97, 0.53);
+		transform: translateY(0px);
+	}
+	30% {
+		transform-origin: center;
+		animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
+		transform: translateY(-10px);
+	}
+	100% {
+		transform-origin: center;
+		transform: translateY(-10px) rotate(45deg) scale(0.9);
+	}
+}
+
+@keyframes down-rotate {
+	0% {
+		animation-timing-function: cubic-bezier(0.16, -0.88, 0.97, 0.53);
+		transform: translateY(0px);
+	}
+	30% {
+		transform-origin: center;
+		animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
+		transform: translateY(10px);
+	}
+	100% {
+		transform-origin: center;
+		transform: translateY(10px) rotate(-45deg) scale(0.9);
+	}
+}
+
+@keyframes hide {
+	29% {
+		opacity: 1;
+	}
+	30% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+
+
+body {
+  font-family: "Roboto", sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background-image: linear-gradient(120deg, #a0a0a0, #a0a0a0);
+  color: white;
+}
+.main-body {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-direction: row;
+}
+.mine-div {
+  width: 200px;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-direction: column;
+}
+
+.mine-button {
+  width: 150px;
+  height: auto;
+  cursor: pointer;
+  animation: spin 4s linear infinite;
+}
+
+.mine-button:active {
+  width: 120px;
+  height: auto;
+}
+.igen {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-direction: column;
+
+  height: 150px;
+  width: 150px;
+}
+
+@keyframes spin {
+  from {
+    transform: rotateZ(0deg);
+  }
+  to {
+    transform: rotateZ(360deg);
+  }
+}
+
+.balance {
+  margin: 4em 0 0.2em 0;
+  font-size: 35px;
+}
+
+.balancetext {
+  font-size: 20px;
+  margin-bottom: 2em;
+}
+
+.header {
+  width: 300%;
+  height: 4vh;
+  padding-top: 0.8em;
+  text-align: center;
+  background-color: #303030;
+}
+.text {
+  animation: newsText 2s;
+}
+@keyframes newsText {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 100;
+  }
+}
+
+.ciscocoin {
+  width: 100px;
+  height: auto;
+  z-index: -1000;
+  animation: fall 3s linear infinite;
+}
+
+@keyframes fall {
+  from {
+    transform: translate(-500px, -700px);
+  }
+  to {
+    transform: translate(-500px, 500px);
+  }
+}
+
+.column1 {
+  background-color: #303030;
+  color: white;
+  width: 250px;
+  height: 100vh;
+}
+.column1-header {
+  font-size: 25px;
+  text-align: center;
+  margin: 1em 0 1em 0;
+}
+
+.column2 {
+  background-color: #303030;
+  color: white;
+  width: 250px;
+  height: 100vh;
+}
+.column2-header {
+  font-size: 25px;
+  text-align: center;
+  margin: 1em 0 1em 0;
+}
+
+
+.items {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.cisco-miner {
+  background-image: url("../img/ciscominer.png");
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: 50%; /* Resize the background image to cover the entire container */
+  margin-top: 1em;
+  width: 120px;
+  height: 120px;
+  border-color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cisco-escavator {
+  background-image: url("../img/ciscoescavator.png");
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: 50%; /* Resize the background image to cover the entire container */
+  margin-top: 1em;
+  width: 120px;
+  height: 120px;
+  border-color: white;
+  cursor: pointer;
+}
+
+.cisco-factory {
+  background-image: url("../img/ciscofactory.png");
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: 50%; /* Resize the background image to cover the entire container */
+  margin-top: 1em;
+  width: 120px;
+  height: 120px;
+  border-color: white;
+  cursor: pointer;
+}
+
+.cisco-scientist {
+  background-image: url("../img/ciscoscientist.png");
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: 50%; /* Resize the background image to cover the entire container */
+  margin-top: 1em;
+  width: 120px;
+  height: 120px;
+  border-color: white;
+  cursor: pointer;
+}
+
+.productdescription {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 10px 5px;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+}
+
+.price {
+  font-size: 14px;
+  margin: 0em 1em 0.5em 0;
+  flex: 1;
+}
+
+.quantity {
+  margin-left: 8em;
+  margin-top: 2em;
+  font-size: 18px;
+}
+
+.cisco-miner:hover .productdescription,
+.cisco-escavator:hover .productdescription,
+.cisco-factory:hover .productdescription,
+.cisco-scientist:hover .productdescription,
+.upgrade1:hover .productdescription,
+.upgrade2:hover .productdescription,
+.upgrade3:hover .productdescription,
+.upgrade4:hover .productdescription,
+.upgrade5:hover .productdescription {
+  visibility: visible;
+}
+
+.workers {
+  display: flex;
+  width: 100vh;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+/* .ciscominer { */
+/*  animation: mine 0.4s linear infinite; */
+/* } */
+/* .ciscoescavator { */
+/*   animation: dig 30s linear infinite; */
+/* } */
+/* .ciscofactory { */
+/*   animation: factory 0.1s linear infinite; */
+/* } */
+/*  */
+/* .ciscoscientist { */
+/*   animation: science 2s linear infinite; */
+/* } */
+
+@keyframes mine {
+  from {
+    transform: rotate(40deg);
+  }
+  to {
+    transform: rotate(-20deg);
+  }
+}
+
+@keyframes dig {
+  0% {
+    transform: translate(0px) 0px;
+  }
+  50% {
+    transform: translate(100px, 0px);
+  }
+  100% {
+    transform: translate(0px, 0px);
+  }
+}
+
+@keyframes factory {
+  from {
+    transform: rotate(1deg);
+  }
+  to {
+    transform: rotate(-1deg);
+  }
+}
+
+.ciscopersecond {
+  margin: 1em 0 0 1em;
+  color: #90ee90;
+}
+
+.totalspent {
+  margin: 1em 0 0 1em;
+  color: #ff7f7f;
+}
+
+.upgrade-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.upgrade1 {
+  background-image: url("../img/upgrade1.png");
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover; /* Resize the background image to cover the entire container */
+  margin-top: 1em;
+  width: 30px;
+  height: 30px;
+  border-color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.upgrade2 {
+  background-image: url("../img/upgrade2.png");
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover; /* Resize the background image to cover the entire container */
+  margin-top: 1em;
+  width: 30px;
+  height: 30px;
+  border-color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.upgrade3 {
+  background-image: url("../img/upgrade3.png");
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover; /* Resize the background image to cover the entire container */
+  margin-top: 1em;
+  width: 30px;
+  height: 30px;
+  border-color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.upgrade4 {
+  background-image: url("../img/upgrade4.png");
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover; /* Resize the background image to cover the entire container */
+  margin-top: 1em;
+  width: 30px;
+  height: 30px;
+  border-color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.upgrade5 {
+  background-image: url("../img/upgrade5.png");
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover; /* Resize the background image to cover the entire container */
+  margin-top: 1em;
+  width: 30px;
+  height: 30px;
+  border-color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.upgradeprice {
+  font-size: 14px;
+  margin: 1.5em 1em 0.5em 0;
+  flex: 1;
+}
+
+.ciscocoinfall {
+  width: 40px;
+  height: auto;
+  position: absolute;
+  z-index: -22;
+  animation: fall 15s;
+}
+
+@keyframes fall {
+  100% {
+    transform: translateY(310px);
+  }
+}
+
+.bal {
+  display: none;
+  
+}
+
+#balmenu {
+  display: block;
+}
+
+.jobb {
+  display: none;
+  
+}
+
+#jobbmenu {
+  display: block;
+}
+
+@media (max-width: 1100px) {
+  #balmenu {
+    display: none;
+  }
+  .header {
+    display: none;
+  }
+  .bal {
+    display: block;
+  }
+  .column1 {
+    background-color: #a0a0a0;
+  }
+
+  #jobbmenu {
+    display: none;
+  }
+  .jobb {
+    display: block;
+  }
+  .column2 {
+    background-color: #a0a0a0;
+  }
+  
+}

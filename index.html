@@ -303,6 +303,14 @@
       align-content: center;
     }
 
+    .subject-description {
+      margin: -4px 0 0;
+      color: var(--muted);
+      font-size: clamp(1rem, 1.1vw, 1.16rem);
+      line-height: 1.5;
+      max-width: 26ch;
+    }
+
     .preview-frame {
       position: relative;
       min-height: min(72vh, 720px);
@@ -919,6 +927,7 @@
                   <span>${projectIndex + 1}/${projectCount} projekt</span>
                 </div>
                 <h3 class="${titleClass}">${escapeHtml(project.title)}</h3>
+                ${project.detail ? `<p class="subject-description">${escapeHtml(project.detail)}</p>` : ""}
               </div>
               ${previewMarkup}
             </div>

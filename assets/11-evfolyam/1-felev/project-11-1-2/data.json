@@ -1,0 +1,224 @@
+{
+  "műfajok": [
+    {
+      "mufaj_id": 1,
+      "mufaj": "Líra"
+    },
+    {
+      "mufaj_id": 3,
+      "mufaj": "Elbeszélés"
+    },
+    {
+      "mufaj_id": 10,
+      "mufaj": "Regény"
+    },
+    {
+      "mufaj_id": 11,
+      "mufaj": "Szonett"
+    },
+    {
+      "mufaj_id": 12,
+      "mufaj": "Szociográfia"
+    }
+  ],
+  "művek": [
+    {
+      "mu_id": 9,
+      "sz_id": 2,
+      "mu_cim": "A köpönyeg",
+      "mufaj_id": 3,
+      "me_leiras": "A köpönyeg egy rövid szatirikus elbeszélés, amely egy jelentéktelen pétervári hivatalnok életét mutatja be, akinek sorsa egy új köpönyeg megszerzése és elvesztése után tragikus fordulatot vesz.\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
+      "mu_kelt": "2025-02-25",
+      "mu_link": "https://mek.oszk.hu/00300/00397/00397.htm"
+    },
+    {
+      "mu_id": 19,
+      "sz_id": 2,
+      "mu_cim": "Holt lelkek",
+      "mufaj_id": 10,
+      "me_leiras": "Szatirikus regény, amely az orosz társadalom visszásságait figurázza ki Csicsikov, a főhős kalandjain keresztül.",
+      "mu_kelt": "1842-05-21",
+      "mu_link": "https://mek.oszk.hu/00300/00391/html/index.htm"
+    },
+    {
+      "mu_id": 20,
+      "sz_id": 15,
+      "mu_cim": "A gólyakalifa",
+      "mufaj_id": 10,
+      "me_leiras": "Babits Mihály regénye, amely egy tudathasadásos fiatalember történetét meséli el.",
+      "mu_kelt": "1916-01-01",
+      "mu_link": "https://mek.oszk.hu/00600/00600/html/index.htm"
+    },
+    {
+      "mu_id": 21,
+      "sz_id": 15,
+      "mu_cim": "Húsvét előtt",
+      "mufaj_id": 1,
+      "me_leiras": "Babits Mihály híres verse, amely a háború borzalmait idézi.",
+      "mu_kelt": "1916-03-26",
+      "mu_link": "https://epa.oszk.hu/00000/00022/00195/06090.htm"
+    },
+    {
+      "mu_id": 22,
+      "sz_id": 16,
+      "mu_cim": "Édes Anna",
+      "mufaj_id": 10,
+      "me_leiras": "Kosztolányi Dezső regénye a cselédlány tragikus sorsáról.",
+      "mu_kelt": "1926-01-01",
+      "mu_link": "https://mek.oszk.hu/04700/04772/04772.htm"
+    },
+    {
+      "mu_id": 23,
+      "sz_id": 16,
+      "mu_cim": "Esti Kornél",
+      "mufaj_id": 3,
+      "me_leiras": "Kosztolányi elbeszéléskötete, amely egy titokzatos férfi életét mutatja be.",
+      "mu_kelt": "1933-01-01",
+      "mu_link": "https://mek.oszk.hu/00700/00744/00744.htm"
+    },
+    {
+      "mu_id": 24,
+      "sz_id": 17,
+      "mu_cim": "Anna örök",
+      "mufaj_id": 11,
+      "me_leiras": "Juhász Gyula megható szerelmi szonettje.",
+      "mu_kelt": "1928-01-01",
+      "mu_link": "https://mek.oszk.hu/17900/17934/17934.pdf"
+    },
+    {
+      "mu_id": 25,
+      "sz_id": 17,
+      "mu_cim": "Milyen volt...",
+      "mufaj_id": 1,
+      "me_leiras": "Egy nosztalgikus vers a szerelem emlékéről.",
+      "mu_kelt": "1930-01-01",
+      "mu_link": "https://mek.oszk.hu/00700/00709/html/vs191201.htm#01"
+    },
+    {
+      "mu_id": 26,
+      "sz_id": 18,
+      "mu_cim": "Góg és Magóg fia vagyok én...",
+      "mufaj_id": 1,
+      "me_leiras": "Ady Endre programversének tekinthető költemény.",
+      "mu_kelt": "1906-01-01",
+      "mu_link": "https://mek.oszk.hu/00500/00588/html/vers0101.htm"
+    },
+    {
+      "mu_id": 27,
+      "sz_id": 18,
+      "mu_cim": "Párizsban járt az ősz",
+      "mufaj_id": 1,
+      "me_leiras": "Egy szimbolista vers a múlandóságról.",
+      "mu_kelt": "1906-10-06",
+      "mu_link": "https://mek.oszk.hu/05500/05552/html/av0045.html"
+    },
+    {
+      "mu_id": 28,
+      "sz_id": 19,
+      "mu_cim": "Esti sugárkoszorú",
+      "mufaj_id": 11,
+      "me_leiras": "Tóth Árpád egyik legszebb szerelmes szonettje.",
+      "mu_kelt": "1923-01-01",
+      "mu_link": "https://www.arcanum.com/hu/online-kiadvanyok/Verstar-verstar-otven-kolto-osszes-verse-2/toth-arpad-1CABE/versek-1CAC3/esti-sugarkoszoru-1CF62/"
+    },
+    {
+      "mu_id": 29,
+      "sz_id": 19,
+      "mu_cim": "Lélektől lélekig",
+      "mufaj_id": 1,
+      "me_leiras": "Melankolikus vers az emberi kapcsolatok mélységeiről.",
+      "mu_kelt": "1928-01-01",
+      "mu_link": "https://mek.oszk.hu/01100/01112/01112.htm#178"
+    },
+    {
+      "mu_id": 30,
+      "sz_id": 20,
+      "mu_cim": "Puszták népe",
+      "mufaj_id": 12,
+      "me_leiras": "Illyés Gyula szociográfiai műve a magyar parasztság életéről.",
+      "mu_kelt": "1936-01-01",
+      "mu_link": "https://epa.oszk.hu/00000/00022/00605/19136.htm"
+    },
+    {
+      "mu_id": 31,
+      "sz_id": 20,
+      "mu_cim": "Egy mondat a zsarnokságról",
+      "mufaj_id": 1,
+      "me_leiras": "Egy híres politikai vers a diktatúrák természetéről.",
+      "mu_kelt": "1950-01-01",
+      "mu_link": "https://mek.oszk.hu/04300/04340/04340.htm#34"
+    }
+  ],
+  "szerzők": [
+    {
+      "sz_id": 2,
+      "sz_neve": "Nikolai Gogol",
+      "sz_szul_ido": "1809-04-01",
+      "sz_szul_hely": "Sorochyntsi",
+      "sz_halala": "1852-02-21",
+      "sz_leiras": "Nikolai Gogol orosz író volt, szatirikus művek szerzője. Gogol művei groteszkek és társadalmi kritikát tartalmaznak.",
+      "sz_kep": "img/gogol.png"
+    },
+    {
+      "sz_id": 15,
+      "sz_neve": "Babits Mihály",
+      "sz_szul_ido": "1883-11-26",
+      "sz_szul_hely": "Szekszárdcigány",
+      "sz_halala": "1941-08-04",
+      "sz_leiras": "Klasszikus műveltségű, filozofikus költő, a Nyugat vezéralakja.",
+      "sz_kep": "img/babits.jpg"
+    },
+    {
+      "sz_id": 16,
+      "sz_neve": "Kosztolányi Dezső",
+      "sz_szul_ido": "1885-03-29",
+      "sz_szul_hely": "Szabadka",
+      "sz_halala": "1936-11-03",
+      "sz_leiras": "Érzékeny, melankolikus költő, prózaíró, a Nyugat kiemelkedő alakja.",
+      "sz_kep": "img/kosztolanyi.jpg"
+    },
+    {
+      "sz_id": 17,
+      "sz_neve": "Juhász Gyula",
+      "sz_szul_ido": "1883-04-04",
+      "sz_szul_hely": "Szeged",
+      "sz_halala": "1937-04-06",
+      "sz_leiras": "Melankolikus, nosztalgikus lírájú költő, a magyar szonett mestere.",
+      "sz_kep": "img/juhasz.jpg"
+    },
+    {
+      "sz_id": 18,
+      "sz_neve": "Ady Endre",
+      "sz_szul_ido": "1877-11-22",
+      "sz_szul_hely": "Érmindszent",
+      "sz_halala": "1919-01-27",
+      "sz_leiras": "Forradalmi, szimbolista költő, a Nyugat egyik vezető alakja.",
+      "sz_kep": "img/ady.jpg"
+    },
+    {
+      "sz_id": 19,
+      "sz_neve": "Tóth Árpád",
+      "sz_szul_ido": "1886-04-14",
+      "sz_szul_hely": "Arad",
+      "sz_halala": "1928-11-07",
+      "sz_leiras": "Finom lírájú, melankolikus költő, a Nyugat második nemzedékének tagja.",
+      "sz_kep": "img/toth.jpg"
+    },
+    {
+      "sz_id": 20,
+      "sz_neve": "Illyés Gyula",
+      "sz_szul_ido": "1902-11-02",
+      "sz_szul_hely": "Felsőrácegrespuszta",
+      "sz_halala": "1983-04-15",
+      "sz_leiras": "Népi író, költő, politikai és társadalmi kérdésekre reflektált.",
+      "sz_kep": "img/illyes.jpg"
+    }
+  ],
+  "users": [
+    {
+      "id": 3,
+      "username": "admin",
+      "password_hash": "$2y$10$4JxssaYTpN9XG74CsBBza.mA1Nd/gSXGbKpg4XlrnjkRF6yO6TETC"
+    }
+  ]
+}
