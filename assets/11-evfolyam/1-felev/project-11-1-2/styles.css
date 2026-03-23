@@ -1,387 +1,665 @@
-/* Admin panel styles */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    line-height: 1.6;
-    margin: 20px;
-    background-color: #f5f5f5;
+    margin: 0;
+    font-family: "Open Sans", sans-serif;
+    color: white;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(45deg, #343131, #A04747, #D8A25E);
+    background-size: 200% 200%;
+    animation: gradient 10s ease infinite;
+    padding-top: 60px; /* A navigációs sáv magasságának figyelembe vétele */
 }
 
-.container {
-    max-width: 1200px;
-    min-width: 320px;
+/* Navbar style */
+.navbar {
+    position: fixed; /* Rögzített pozíció a képernyő tetején */
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 10vh;
+    z-index: 1000;
+    padding-top: 15px;
+}
+
+/* Navbar links */
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    justify-content: center; /* Center the links on larger screens */
+    text-align: center;
+}
+
+/* Navbar items */
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #ffd700;
+}
+
+.anyad {
+    color: #ffd700;
+}
+
+/* Hamburger menu */
+.hamburger {
+    display: none; /* Biztosítsd, hogy látható legyen */
+    position: fixed; /* Rögzítés az ablakhoz */
+    top: 30px; /* A távolság az ablak tetejétől */
+    left: 30px; /* A távolság az ablak jobb szélétől */
+    z-index: 9999; /* Magas z-index érték, hogy minden más előtt legyen */
+    cursor: pointer;
+    font-size: 2em;
+    color: white;
+}
+
+/* Hide navigation links by default for small screens */
+#navList {
+    display: flex; /* Default display on large screens */
+    justify-content: center; /* Center the list horizontally */
+    align-items: center; /* Center the list vertically */
+    text-align: center;
     margin: 0 auto;
-    padding: 20px;
-    background-color: white;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    border-radius: 8px;
-    overflow-x: auto;  /* Horizontális görgetés, ha szükséges */
+    background-color: rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    width: fit-content;
+    height: 50px;
+    list-style: none; /* Remove list bullets */
+    padding: 0; /* Remove padding */
 }
 
-h1, h2 {
-    color: #333;
-    margin-bottom: 20px;
+/* Ensure links fill the space properly if needed */
+#navList li a {
+    display: block; /* Make the link block level to fill the list item */
+    padding: 5px 10px;
 }
 
-/* Navigation tabs */
-.nav-tabs {
+
+/* Mobile layout - 440px or less */
+@media (max-width: 770px) {
+    .hamburger {
+        display: block; /* Hamburger menü ikonjának megjelenítése */
+    }
+
+    #navList {
+        display: none; /* Alapértelmezetten el van rejtve */
+        flex-direction: column; /* Függőleges rendezés */
+        position: absolute; /* Rögzített pozíció */
+        top: 0;
+        right: 0;
+        background-color: #343131;
+        width: 98%;
+        padding: 20px;
+        height: fit-content;
+        text-align: center;
+        margin-top: 0;
+    }
+
+    /* Az osztály, amely a menü megjelenítéséért felel */
+    #navList.show {
+        display: flex; /* Ha a show osztály hozzá van adva, akkor megjelenik */
+    }
+
+    #navList li {
+        margin: 15px 0;
+    }
+
+    #navList li a {
+        font-size: 1.2em;
+    }
+}
+
+
+
+
+.section {
+    visibility: hidden;
+    height: 0;
+    opacity: 0;
+    transition: opacity 0.5s ease, visibility 0s 0.5s, height 0s 0.5s;
+}
+
+.section.active {
+    visibility: visible;
+    height: auto;
+    opacity: 1;
+    transition: opacity 0.5s ease, visibility 0s, height 0s;
+}
+
+.members-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Center members */
+    gap: 30px; /* Space between members */
+    margin-top: 30px; /* Space above the member section */
+    padding: 30px;
+}
+
+.member {
+    text-align: center; /* Center text under images */
+    max-width: 250px; /* Set a max width for each member */
+    flex: 1; /* Allow members to grow */
+    min-width: 150px; /* Set a min width for smaller screens */
+}
+
+.member img {
+    width: 100%; /* Make the image responsive */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 30px; /* Round the images */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional shadow for better visibility */
+}
+
+.member a:hover{
+    color: #ffd700;
+}
+
+.member a {
+    all: unset;
+    text-decoration: none;
+    color: white;
+    font-size: 25px;
+    font-weight: bold;
+    transition: color 0.3s ease;
+    margin-top: 30px;
+    display: inline-block; /* Hozzáadva, hogy működjön a margin */
+}
+
+/* Keresőmező konténer */
+.search-box {
+    display: flex;
+    align-items: center; /* Középre igazítás függőlegesen */
+    justify-content: center; /* Középre igazítás vízszintesen */
+    background-color: #3a3a3a; /* Sötét háttér */
+    border-radius: 50px; /* Lekerekített sarkok */
+    padding: 10px 15px; /* Padding az inputhoz és gombhoz */
+    width: 300px; /* Meghatározott szélesség */
+    margin: 0 auto; /* Középre igazítás a szülő elemhez képest */
+}
+
+/* Search input field */
+.search-input {
+    border: none;
+    outline: none;
+    background: none;
+    color: #ccc; /* Light text color */
+    font-size: 16px;
+    flex: 1; /* Take up available space */
+}
+
+/* Search button */
+.search-button {
+    background: none;
+    border: none;
+    color: #ccc; /* Light color for the search icon */
+    cursor: pointer;
+    font-size: 18px;
+}
+
+/* Change icon color on hover */
+.search-button:hover {
+    color: #fff; /* Make the icon brighter on hover */
+}
+
+.biography-row {
+    display: none;
+    background-color: #444; /* Optional: Different background color */
+    color: #ddd;
+    font-style: italic; /* Optional: Italicize text for differentiation */
+    max-width: 1000px;
+    word-wrap: break-word;
+}
+
+.biography-row td {
+    text-align: center; /* Center text horizontally */
+    display: flex;
+    justify-content: center; /* Center flex content horizontally */
+    align-items: center; /* Center flex content vertically */
+    padding: 20px; /* Optional: Add padding for better spacing */
+    max-width: 1000px;
+    word-wrap: break-word;
+}
+
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+}
+
+footer p {
+    margin: 0;
+    font-size: 14px;
+    color: #b1b1b1;
+}
+
+/* Oldalváltó stílusok */
+.pagination {
+    margin-top: 15px;
+    text-align: center;
+}
+
+.pagination button {
+    padding: 10px 15px;
+    margin: 0 5px;
+    background-color: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.pagination button.active {
+    background-color: #ffd700;
+}
+
+.pagination button:hover:not(.active) {
+    background-color: #555;
+}
+
+#poets {
+    width: 100%;
+}
+
+/* Style for the arrow */
+.arrow {
+    display: inline-block;
+    margin-right: 10px; /* Space between arrow and name */
+    transition: transform 0.3s ease; /* Smooth rotation */
+    font-size: 1.5em; /* Make the arrow larger */
+    color: #ddd;
+    vertical-align: middle; /* Align the arrow with the name text */
+}
+
+/* Rotate the arrow when the row is active */
+.poet-row.active .arrow {
+    transform: rotate(180deg); /* Rotate the arrow upwards when active */
+}
+
+/* A táblázat maximális magasságának beállítása */
+#poetsTable {
+    display: block; /* A táblázat blokk szintű megjelenítése */
+    width: 800px; /* A táblázat legyen széles, mint a képernyő */
+    max-width: 100%; /* Maximális szélesség: 100% a szülő elemhez képest */
+    max-height: 350px; /* Maximális magasság beállítása (pl. 300px) */
+    overflow-y: scroll; /* Görgethető a függőleges irányban */
+    overflow-x: auto; /* Ne jelenjen meg vízszintes görgetősáv */
+    margin: 20px auto; /* Center the table and add some top/bottom margin */
+}
+
+
+
+
+#poetsTable th,
+#poetsTable td {
+    display: table-cell; /* Megjelenítés táblázat cellákként */
+    max-width: 1000px;
+    padding: 12px; /* Padding a cellákban */
+    text-align: center; /* Balra igazított szöveg */
+    border-bottom: 1px solid #444; /* Alsó határvonal */
+    background-color: #555;
+    word-wrap: break-word;
+}
+
+#poetsTable th {
+    background-color: #3a3a3a; /* Sötét háttér a fejlécnek */
+}
+
+
+/* A források megjelenítése */
+.source-item {
+    display: flex; /* A sorba rendezi az elemeket */
+    align-items: center; /* Középre igazítja az elemeket függőlegesen */
+    margin-bottom: 20px; /* Kis margó a források között */
+}
+
+/* Az ikon stílusa */
+.source-icon {
+    width: 50px; /* Az ikon szélessége */
+    height: 50px; /* Az ikon magassága */
+    margin-right: 15px; /* Távolság az ikon és a cím között */
+}
+
+/* A forrás tartalmát tartalmazó div */
+.source-content {
+    display: flex; /* A szöveget és az ikont is egymás mellett helyezi el */
+    align-items: center; /* Középre igazítja függőlegesen */
+    margin: auto;
+}
+
+/* Link stílus a források nevéhez */
+.source-content  a {
+    text-decoration: none;
+    margin: auto;
+    color: white;
+    font-size: 25px;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+/* Link hover effektus */
+.source-content a:hover {
+    color: #ffd700;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between; /* Igazítja a két elemet egymás mellett, ha van elég hely */
+    gap: 100px; /* Ad egy kis távolságot a két oszlop között */
+}
+
+.item {
+    flex: 1; /* Minden item kitölti az elérhető helyet */
+    padding: 10px; /* Még jobb elrendezés érdekében */
+}
+
+.source-item {
+    margin-bottom: 10px; /* Elemek közötti távolság */
+}
+
+.source-content {
+    display: flex;
+    align-items: center;
+}
+
+.timeline {
     list-style: none;
     padding: 0;
-    margin: 0 0 30px 0;
-    border-bottom: 2px solid #ddd;
-    display: flex;
-    gap: 10px;
+    margin: 0;
+    position: relative;
+    height: fit-content;
+    text-align: left;
 }
 
-.nav-tabs li {
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 5px 5px 0 0;
-    transition: all 0.3s ease;
+.timeline-item {
+    padding-left: 20px;
+    position: relative;
+    border-left: 2px solid #3498db; /* Kék vonal */
 }
 
-.nav-tabs li:hover {
-    background-color: #e9ecef;
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -7px; /* Pont középre igazítása */
+    top: 0;
+    width: 12px;
+    height: 12px;
+    background: #3498db; /* Pont színe */
+    border-radius: 50%; /* Kör forma */
+    z-index: 1; /* Előtérben tartás */
 }
 
-.nav-tabs li.active {
-    background-color: #007bff;
-    color: white;
-    border-bottom: 2px solid #0056b3;
+.timeline-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: -2px; /* Vonal igazítása a középponthoz */
+    top: 12px; /* A pont aljától induljon */
+    width: 2px; /* Vonal szélessége */
+    height: calc(100% - 12px); /* Maradék magasság */
+    background: #3498db; /* Vonal színe */
+    z-index: 0; /* Háttérbe helyezés */
 }
 
-/* Forms */
-form {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    max-width: 100%;
-    margin: 0 auto;
-}
-
-.form-group {
-    margin-bottom: 15px;
-}
-
-label {
-    display: block;
+.timeline-date {
+    font-weight: bold;
     margin-bottom: 5px;
-    color: #555;
+    color: #d3d3d3; /* Dátum színe */
 }
 
-input[type="text"],
-input[type="date"],
-select,
-textarea {
+.timeline-content h3 {
+    margin: 0 0 5px;
+    font-size: 1.2em;
+    color: #ffffff; /* Cím színe */
+}
+
+.timeline-content p {
+    margin: 0;
+    font-size: 1em;
+    color: #d3d3d3; /* Szöveg színe */
+    padding-bottom: 20px;
+}
+
+#history a{
+    display: none;
+}
+
+.fos{
+    display: none;
+}
+
+@media (max-width: 1270px) {
+    #history iframe{
+        display: none;
+    }
+
+    #history a{
+        display: flex;
+        font-size: 50px;
+        color: white;
+    }
+
+    .fos{
+        display: flex;
+    }
+}
+
+@media (max-width: 768px) {
+    .timeline {
+        padding: 0;
+    }
+
+    .timeline-item {
+        padding-left: 10px;
+        border-left: 2px solid #3498db; /* Továbbra is a kék vonal */
+    }
+
+    .timeline-item::before {
+        left: -6px; /* Kisebb pont eltolás */
+        width: 10px;
+        height: 10px;
+    }
+
+    .timeline-item:not(:last-child)::after {
+        left: -1px; /* Vonal igazítása */
+        top: 10px; /* Pont mérethez igazított kezdés */
+        width: 1px;
+    }
+
+    .timeline-date {
+        font-size: 0.9em;
+    }
+
+    .timeline-content h3 {
+        font-size: 1.1em;
+    }
+
+    .timeline-content p {
+        font-size: 0.9em;
+    }
+}
+
+@media (max-width: 480px) {
+    .timeline-item {
+        padding-left: 5px;
+    }
+
+    .timeline-item::before {
+        left: -5px;
+        width: 8px;
+        height: 8px;
+    }
+
+    .timeline-item:not(:last-child)::after {
+        left: 0; /* Vonal igazítása még kisebb képernyőhöz */
+        width: 1px;
+    }
+
+    .timeline-date {
+        font-size: 0.8em;
+    }
+
+    .timeline-content h3 {
+        font-size: 1em;
+    }
+
+    .timeline-content p {
+        font-size: 0.8em;
+    }
+}
+
+.halokep img{
+    width: 75%;
+    border-radius: 10px;
+}
+
+/* Alap stílusok */
+#networking {
+    text-align: center;
+}
+
+.slider-container {
+    position: relative;
+    max-width: 75%;
+    margin: auto;
+    overflow: hidden;
+}
+
+/* Képek 75%-os méretre beállítása és sarkok lekerekítése */
+.slider {
+    display: flex;
+    transition: transform 0.5s ease;
+    justify-content: center; /* Képek középre igazítása */
+}
+
+.slide {
+    min-width: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.slider-container img {
     width: 100%;
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    margin-bottom: 10px;
-    max-width: 100%;
-    box-sizing: border-box;
+    border-radius: 10px;
+    display: block;
+    margin: auto;
 }
 
-textarea {
-    min-height: 100px;
-}
-
-button {
-    background-color: #007bff;
+/* Gombok stílusai */
+#networking button {
+    position: absolute;
+    top: 50%;
+    background-color: rgba(0, 0, 0, 0.25);
     color: white;
-    padding: 10px 20px;
     border: none;
-    border-radius: 4px;
+    padding: 16px;
     cursor: pointer;
+    z-index: 10;
+    font-size: 18px;
+    transition: 0.3s;
+    transform: translateY(-50%);
+}
+
+/* Gombok pozicionálása a képeken belül */
+.prev {
+    left: 0;
+    border-radius: 0 10px 10px 0px;
+}
+
+.next {
+    right: 0;
+    border-radius: 10px 0 0 10px;
+}
+
+/* Hover hatás a gombokon */
+#networking button:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Letöltés gomb stílusai */
+.download-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(0, 0, 0, 0.25);
+    color: white;
+    padding: 8px 16px;
+    text-decoration: none;
+    font-size: 30px;
+    border-radius: 5px;
+    z-index: 15;
     transition: background-color 0.3s;
 }
 
-button:hover {
-    background-color: #0056b3;
+/* Hover hatás a letöltés gombon */
+.download-btn:hover {
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
-/* Tables */
-.table-container {
-    width: 100%;
-    overflow-x: auto;
-    margin-bottom: 20px;
-}
-
-table {
-    min-width: 800px;  /* Minimum szélesség a táblázatoknak */
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-    background-color: white;
-}
-
-th, td {
-    padding: 12px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-}
-
-th {
-    background-color: #f8f9fa;
-    color: #333;
-}
-
-tr:hover {
-    background-color: #f5f5f5;
-}
-
-/* Action buttons in tables */
-.action-buttons {
-    display: flex;
-    gap: 10px;
-}
-
-.edit-btn {
-    background-color: #28a745;
-}
-
-.delete-btn {
-    background-color: #dc3545;
-}
-
-/* Tab content */
-.tab-content {
-    display: none;
-    padding: 20px;
-    background-color: white;
-    border-radius: 0 0 5px 5px;
-}
-
-.tab-content.active {
-    display: block;
-}
-
-/* Responsive design */
-@media (max-width: 768px) {
-    .container {
-        padding: 10px;
-    }
-    
-    .nav-tabs {
-        flex-direction: column;
-    }
-    
-    .nav-tabs li {
-        width: 100%;
-        text-align: center;
-        margin-bottom: 5px;
-    }
-
-    form {
-        padding: 10px;
-    }
-
-    .action-buttons {
-        flex-direction: column;
-        gap: 5px;
-    }
-
-    .action-buttons button {
-        width: 100%;
-    }
-
-    h1 {
-        font-size: 24px;
-    }
-
-    h2 {
-        font-size: 20px;
-    }
-}
-
-/* Dark mode styles */
-body.dark-mode {
-    background-color: #121212;
-    color: #ffffff;
-}
-
-.dark-mode .container {
-    background-color: #1e1e1e;
-    box-shadow: 0 0 15px rgba(0,0,0,0.5);
-}
-
-.dark-mode h1, 
-.dark-mode h2 {
-    color: #ffffff;
-}
-
-.dark-mode .nav-tabs {
-    border-bottom-color: #333333;
-}
-
-.dark-mode .nav-tabs li {
-    color: #ffffff;
-    background-color: #2d2d2d;
-}
-
-.dark-mode .nav-tabs li:hover {
-    background-color: #383838;
-}
-
-.dark-mode .nav-tabs li.active {
-    background-color: #0066cc;
-}
-
-.dark-mode form {
-    background-color: #1e1e1e;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-}
-
-.dark-mode input[type="text"],
-.dark-mode input[type="date"],
-.dark-mode select,
-.dark-mode textarea {
-    background-color: #2d2d2d;
-    border-color: #404040;
-    color: #ffffff;
-}
-
-.dark-mode input[type="text"]:focus,
-.dark-mode input[type="date"]:focus,
-.dark-mode select:focus,
-.dark-mode textarea:focus {
-    border-color: #0066cc;
-    outline: none;
-    box-shadow: 0 0 0 2px rgba(0,102,204,0.25);
-}
-
-.dark-mode table {
-    background-color: #1e1e1e;
-}
-
-.dark-mode th {
-    background-color: #2d2d2d;
-    color: #ffffff;
-    border-bottom: 2px solid #333333;
-}
-
-.dark-mode td {
-    border-bottom-color: #333333;
-}
-
-.dark-mode tr:hover {
-    background-color: #2d2d2d;
-}
-
-.dark-mode button {
-    background-color: #0066cc;
-}
-
-.dark-mode button:hover {
-    background-color: #0052a3;
-}
-
-.dark-mode .edit-btn {
-    background-color: #1f7a1f;
-}
-
-.dark-mode .edit-btn:hover {
-    background-color: #166116;
-}
-
-.dark-mode .delete-btn {
-    background-color: #b32d2d;
-}
-
-.dark-mode .delete-btn:hover {
-    background-color: #8f2424;
-}
-
-/* Dark mode switch styles */
-.theme-switch-wrapper {
-    display: flex;
-    align-items: center;
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 100;
-}
-
-.theme-switch {
-    display: inline-block;
-    height: 34px;
-    position: relative;
-    width: 60px;
-}
-
-.theme-switch input {
-    display: none;
-}
-
-.slider {
-    background-color: #ccc;
-    bottom: 0;
-    cursor: pointer;
-    left: 0;
-    position: absolute;
-    right: 0;
-    top: 0;
-    transition: .4s;
-    border-radius: 34px;
-}
-
-.slider:before {
-    background-color: #fff;
-    bottom: 4px;
-    content: "";
-    height: 26px;
-    left: 4px;
-    position: absolute;
-    transition: .4s;
-    width: 26px;
-    border-radius: 50%;
-}
-
-input:checked + .slider {
-    background-color: #007bff;
-}
-
-input:checked + .slider:before {
-    transform: translateX(26px);
-}
-
-.theme-switch-wrapper em {
-    margin-left: 10px;
-    font-size: 1rem;
+/* a {
+    text-decoration: none;
     color: inherit;
+} */
+
+/* Media query 600px alatt */
+@media (max-width: 600px) {
+    .row {
+        flex-direction: column; /* Az elemeket egymás alá rendezi */
+        gap: 10px; /* Csökkenti a távolságot a két item között */
+    }
+
+    .item {
+        flex: none; /* Nem kell kitölteniük az elérhető helyet, csak akkora lesz, amekkora szükséges */
+    }
 }
 
-/* Dark mode switch styles update */
-.dark-mode .slider {
-    background-color: #2d2d2d;
+
+.source-icon {
+    width: 40px; /* Ikon méretének beállítása */
+    height: 40px; /* Ikon méretének beállítása */
+    object-fit: contain;
+    margin-right: 10px; /* Kis távolság az ikon és a szöveg között */
 }
 
-.dark-mode .slider:before {
-    background-color: #ffffff;
+
+/* Responsive design a táblázat számára */
+@media (max-width: 600px) {
+    #poetsTable {
+        overflow-x: auto; /* A táblázat vízszintesen görgethető */
+        -webkit-overflow-scrolling: touch; /* Smooth scrolling a mobilon */
+    }
+
+    /* Táblázat cellák megjelenítése mobilon */
+    #poetsTable th,
+    #poetsTable td {
+        display: table-cell; /* A cellák táblázat cellaként jelennek meg */
+        min-width: 120px; /* Min szélesség a celláknak */
+    }
+
+    /* Link hover effektus */
+    .source-content a:hover {
+        color: white;
+    }
 }
 
-.dark-mode input:checked + .slider {
-    background-color: #0066cc;
-}
 
-/* Dark mode tab content */
-.dark-mode .tab-content {
-    background-color: #1e1e1e;
-    color: #ffffff;
+@keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
-
-.dark-mode #new-content,
-.dark-mode #edit-content {
-    background-color: #1e1e1e;
-    color: #ffffff;
-}
-
-.dark-mode .tab-content.active {
-    background-color: #1e1e1e;
-    color: #ffffff;
-}
-
-/* Dark mode table container */
-.dark-mode .table-container {
-    background-color: #1e1e1e;
-} 

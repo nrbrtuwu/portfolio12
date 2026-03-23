@@ -28,13 +28,21 @@
     html,
     body {
       margin: 0;
+      width: 100%;
+      height: 100%;
       min-height: 100%;
+      overflow: hidden;
       background:
         radial-gradient(circle at 12% 18%, rgba(54, 182, 255, 0.12), transparent 22%),
         radial-gradient(circle at 88% 20%, rgba(138, 216, 255, 0.08), transparent 20%),
         linear-gradient(160deg, var(--bg-deep) 0%, var(--bg) 45%, var(--bg-warm) 100%);
       color: var(--text);
       font-family: "IBM Plex Sans", sans-serif;
+    }
+
+    body {
+      position: fixed;
+      inset: 0;
     }
 
     #matrix-bg {
@@ -50,6 +58,8 @@
     .reveal {
       position: relative;
       z-index: 1;
+      width: 100%;
+      height: 100%;
       color: var(--text);
       font-family: "IBM Plex Sans", sans-serif;
       font-size: 16px;
@@ -344,6 +354,7 @@
       min-height: min(74vh, 760px);
       background: rgba(4, 9, 15, 0.82);
       isolation: isolate;
+      overscroll-behavior: contain;
     }
 
     .preview-frame.has-site::before,
@@ -372,6 +383,7 @@
       min-height: inherit;
       border: 0;
       background: #07111d;
+      overscroll-behavior: contain;
     }
 
     .preview-frame::before {
@@ -586,6 +598,22 @@
     let matrixFontSize = 22;
     let lastMatrixTime = 0;
     const matrixChars = "{}[]()<>/#$=+-_*0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+    function lockPresentationScroll() {
+      if (window.scrollX !== 0 || window.scrollY !== 0) {
+        window.scrollTo(0, 0);
+      }
+
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+    }
+
+    window.addEventListener("scroll", lockPresentationScroll, { passive: true });
+    window.addEventListener("hashchange", () => {
+      window.setTimeout(lockPresentationScroll, 0);
+    });
+    window.addEventListener("load", lockPresentationScroll);
+    lockPresentationScroll();
 
     function randomMatrixChar() {
       return matrixChars[Math.floor(Math.random() * matrixChars.length)];
@@ -893,6 +921,8 @@
                   src="${projectAsset.path}"
                   title="${escapeHtml(project.title)}"
                   loading="lazy"
+                  sandbox="allow-scripts allow-forms allow-downloads"
+                  referrerpolicy="no-referrer"
                 ></iframe>
               </div>
             `

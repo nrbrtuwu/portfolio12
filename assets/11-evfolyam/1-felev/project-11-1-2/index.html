@@ -1,694 +1,1075 @@
 <!DOCTYPE html>
-<html lang="hu" data-bs-theme="light">
+<html lang="hu">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Művek Listázása és Szűrése</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
-  <style>
-    body {
-      transition: background-color 0.3s, color 0.3s;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projekt Weblap</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <style>
+body {
+    margin: 0;
+    font-family: "Open Sans", sans-serif;
+    color: white;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(45deg, #343131, #A04747, #D8A25E);
+    background-size: 200% 200%;
+    animation: gradient 10s ease infinite;
+    padding-top: 60px; /* A navigációs sáv magasságának figyelembe vétele */
+}
+
+/* Navbar style */
+.navbar {
+    position: fixed; /* Rögzített pozíció a képernyő tetején */
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 10vh;
+    z-index: 1000;
+    padding-top: 15px;
+}
+
+/* Navbar links */
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    justify-content: center; /* Center the links on larger screens */
+    text-align: center;
+}
+
+/* Navbar items */
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #ffd700;
+}
+
+.anyad {
+    color: #ffd700;
+}
+
+/* Hamburger menu */
+.hamburger {
+    display: none; /* Biztosítsd, hogy látható legyen */
+    position: fixed; /* Rögzítés az ablakhoz */
+    top: 30px; /* A távolság az ablak tetejétől */
+    left: 30px; /* A távolság az ablak jobb szélétől */
+    z-index: 9999; /* Magas z-index érték, hogy minden más előtt legyen */
+    cursor: pointer;
+    font-size: 2em;
+    color: white;
+}
+
+/* Hide navigation links by default for small screens */
+#navList {
+    display: flex; /* Default display on large screens */
+    justify-content: center; /* Center the list horizontally */
+    align-items: center; /* Center the list vertically */
+    text-align: center;
+    margin: 0 auto;
+    background-color: rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    width: fit-content;
+    height: 50px;
+    list-style: none; /* Remove list bullets */
+    padding: 0; /* Remove padding */
+}
+
+/* Ensure links fill the space properly if needed */
+#navList li a {
+    display: block; /* Make the link block level to fill the list item */
+    padding: 5px 10px;
+}
+
+
+/* Mobile layout - 440px or less */
+@media (max-width: 770px) {
+    .hamburger {
+        display: block; /* Hamburger menü ikonjának megjelenítése */
     }
 
-    body.dark-mode {
-      background-color: #1a1a1a !important;
-      color: #fff !important;
+    #navList {
+        display: none; /* Alapértelmezetten el van rejtve */
+        flex-direction: column; /* Függőleges rendezés */
+        position: absolute; /* Rögzített pozíció */
+        top: 0;
+        right: 0;
+        background-color: #343131;
+        width: 98%;
+        padding: 20px;
+        height: fit-content;
+        text-align: center;
+        margin-top: 0;
     }
 
-    .dark-mode .container {
-      background-color: transparent;
+    /* Az osztály, amely a menü megjelenítéséért felel */
+    #navList.show {
+        display: flex; /* Ha a show osztály hozzá van adva, akkor megjelenik */
     }
 
-    .dark-mode .card {
-      background-color: #2d2d2d !important;
-      border-color: #404040 !important;
+    #navList li {
+        margin: 15px 0;
     }
 
-    .dark-mode .table {
-      color: #fff !important;
+    #navList li a {
+        font-size: 1.2em;
+    }
+}
+
+
+
+
+.section {
+    visibility: hidden;
+    height: 0;
+    opacity: 0;
+    transition: opacity 0.5s ease, visibility 0s 0.5s, height 0s 0.5s;
+}
+
+.section.active {
+    visibility: visible;
+    height: auto;
+    opacity: 1;
+    transition: opacity 0.5s ease, visibility 0s, height 0s;
+}
+
+.members-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Center members */
+    gap: 30px; /* Space between members */
+    margin-top: 30px; /* Space above the member section */
+    padding: 30px;
+}
+
+.member {
+    text-align: center; /* Center text under images */
+    max-width: 250px; /* Set a max width for each member */
+    flex: 1; /* Allow members to grow */
+    min-width: 150px; /* Set a min width for smaller screens */
+}
+
+.member img {
+    width: 100%; /* Make the image responsive */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 30px; /* Round the images */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional shadow for better visibility */
+}
+
+.member a:hover{
+    color: #ffd700;
+}
+
+.member a {
+    all: unset;
+    text-decoration: none;
+    color: white;
+    font-size: 25px;
+    font-weight: bold;
+    transition: color 0.3s ease;
+    margin-top: 30px;
+    display: inline-block; /* Hozzáadva, hogy működjön a margin */
+}
+
+/* Keresőmező konténer */
+.search-box {
+    display: flex;
+    align-items: center; /* Középre igazítás függőlegesen */
+    justify-content: center; /* Középre igazítás vízszintesen */
+    background-color: #3a3a3a; /* Sötét háttér */
+    border-radius: 50px; /* Lekerekített sarkok */
+    padding: 10px 15px; /* Padding az inputhoz és gombhoz */
+    width: 300px; /* Meghatározott szélesség */
+    margin: 0 auto; /* Középre igazítás a szülő elemhez képest */
+}
+
+/* Search input field */
+.search-input {
+    border: none;
+    outline: none;
+    background: none;
+    color: #ccc; /* Light text color */
+    font-size: 16px;
+    flex: 1; /* Take up available space */
+}
+
+/* Search button */
+.search-button {
+    background: none;
+    border: none;
+    color: #ccc; /* Light color for the search icon */
+    cursor: pointer;
+    font-size: 18px;
+}
+
+/* Change icon color on hover */
+.search-button:hover {
+    color: #fff; /* Make the icon brighter on hover */
+}
+
+.biography-row {
+    display: none;
+    background-color: #444; /* Optional: Different background color */
+    color: #ddd;
+    font-style: italic; /* Optional: Italicize text for differentiation */
+    max-width: 1000px;
+    word-wrap: break-word;
+}
+
+.biography-row td {
+    text-align: center; /* Center text horizontally */
+    display: flex;
+    justify-content: center; /* Center flex content horizontally */
+    align-items: center; /* Center flex content vertically */
+    padding: 20px; /* Optional: Add padding for better spacing */
+    max-width: 1000px;
+    word-wrap: break-word;
+}
+
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+}
+
+footer p {
+    margin: 0;
+    font-size: 14px;
+    color: #b1b1b1;
+}
+
+/* Oldalváltó stílusok */
+.pagination {
+    margin-top: 15px;
+    text-align: center;
+}
+
+.pagination button {
+    padding: 10px 15px;
+    margin: 0 5px;
+    background-color: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.pagination button.active {
+    background-color: #ffd700;
+}
+
+.pagination button:hover:not(.active) {
+    background-color: #555;
+}
+
+#poets {
+    width: 100%;
+}
+
+/* Style for the arrow */
+.arrow {
+    display: inline-block;
+    margin-right: 10px; /* Space between arrow and name */
+    transition: transform 0.3s ease; /* Smooth rotation */
+    font-size: 1.5em; /* Make the arrow larger */
+    color: #ddd;
+    vertical-align: middle; /* Align the arrow with the name text */
+}
+
+/* Rotate the arrow when the row is active */
+.poet-row.active .arrow {
+    transform: rotate(180deg); /* Rotate the arrow upwards when active */
+}
+
+/* A táblázat maximális magasságának beállítása */
+#poetsTable {
+    display: block; /* A táblázat blokk szintű megjelenítése */
+    width: 800px; /* A táblázat legyen széles, mint a képernyő */
+    max-width: 100%; /* Maximális szélesség: 100% a szülő elemhez képest */
+    max-height: 350px; /* Maximális magasság beállítása (pl. 300px) */
+    overflow-y: scroll; /* Görgethető a függőleges irányban */
+    overflow-x: auto; /* Ne jelenjen meg vízszintes görgetősáv */
+    margin: 20px auto; /* Center the table and add some top/bottom margin */
+}
+
+
+
+
+#poetsTable th,
+#poetsTable td {
+    display: table-cell; /* Megjelenítés táblázat cellákként */
+    max-width: 1000px;
+    padding: 12px; /* Padding a cellákban */
+    text-align: center; /* Balra igazított szöveg */
+    border-bottom: 1px solid #444; /* Alsó határvonal */
+    background-color: #555;
+    word-wrap: break-word;
+}
+
+#poetsTable th {
+    background-color: #3a3a3a; /* Sötét háttér a fejlécnek */
+}
+
+
+/* A források megjelenítése */
+.source-item {
+    display: flex; /* A sorba rendezi az elemeket */
+    align-items: center; /* Középre igazítja az elemeket függőlegesen */
+    margin-bottom: 20px; /* Kis margó a források között */
+}
+
+/* Az ikon stílusa */
+.source-icon {
+    width: 50px; /* Az ikon szélessége */
+    height: 50px; /* Az ikon magassága */
+    margin-right: 15px; /* Távolság az ikon és a cím között */
+}
+
+/* A forrás tartalmát tartalmazó div */
+.source-content {
+    display: flex; /* A szöveget és az ikont is egymás mellett helyezi el */
+    align-items: center; /* Középre igazítja függőlegesen */
+    margin: auto;
+}
+
+/* Link stílus a források nevéhez */
+.source-content  a {
+    text-decoration: none;
+    margin: auto;
+    color: white;
+    font-size: 25px;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+/* Link hover effektus */
+.source-content a:hover {
+    color: #ffd700;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between; /* Igazítja a két elemet egymás mellett, ha van elég hely */
+    gap: 100px; /* Ad egy kis távolságot a két oszlop között */
+}
+
+.item {
+    flex: 1; /* Minden item kitölti az elérhető helyet */
+    padding: 10px; /* Még jobb elrendezés érdekében */
+}
+
+.source-item {
+    margin-bottom: 10px; /* Elemek közötti távolság */
+}
+
+.source-content {
+    display: flex;
+    align-items: center;
+}
+
+.timeline {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    height: fit-content;
+    text-align: left;
+}
+
+.timeline-item {
+    padding-left: 20px;
+    position: relative;
+    border-left: 2px solid #3498db; /* Kék vonal */
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -7px; /* Pont középre igazítása */
+    top: 0;
+    width: 12px;
+    height: 12px;
+    background: #3498db; /* Pont színe */
+    border-radius: 50%; /* Kör forma */
+    z-index: 1; /* Előtérben tartás */
+}
+
+.timeline-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: -2px; /* Vonal igazítása a középponthoz */
+    top: 12px; /* A pont aljától induljon */
+    width: 2px; /* Vonal szélessége */
+    height: calc(100% - 12px); /* Maradék magasság */
+    background: #3498db; /* Vonal színe */
+    z-index: 0; /* Háttérbe helyezés */
+}
+
+.timeline-date {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #d3d3d3; /* Dátum színe */
+}
+
+.timeline-content h3 {
+    margin: 0 0 5px;
+    font-size: 1.2em;
+    color: #ffffff; /* Cím színe */
+}
+
+.timeline-content p {
+    margin: 0;
+    font-size: 1em;
+    color: #d3d3d3; /* Szöveg színe */
+    padding-bottom: 20px;
+}
+
+#history a{
+    display: none;
+}
+
+.fos{
+    display: none;
+}
+
+@media (max-width: 1270px) {
+    #history iframe{
+        display: none;
     }
 
-    .dark-mode .table-striped > tbody > tr:nth-of-type(odd) {
-      background-color: rgba(255, 255, 255, 0.05) !important;
+    #history a{
+        display: flex;
+        font-size: 50px;
+        color: white;
     }
 
-    .dark-mode .table-hover > tbody > tr:hover {
-      background-color: rgba(255, 255, 255, 0.1) !important;
+    .fos{
+        display: flex;
+    }
+}
+
+@media (max-width: 768px) {
+    .timeline {
+        padding: 0;
     }
 
-    .dark-mode .form-control,
-    .dark-mode .form-select {
-      background-color: #1a1a1a !important;
-      border-color: #404040 !important;
-      color: #fff !important;
+    .timeline-item {
+        padding-left: 10px;
+        border-left: 2px solid #3498db; /* Továbbra is a kék vonal */
     }
 
-    .dark-mode .form-control::placeholder {
-      color: #888 !important;
+    .timeline-item::before {
+        left: -6px; /* Kisebb pont eltolás */
+        width: 10px;
+        height: 10px;
     }
 
-    .dark-mode .form-control:focus,
-    .dark-mode .form-select:focus {
-      background-color: #1a1a1a !important;
-      border-color: #0d6efd !important;
-      box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25) !important;
+    .timeline-item:not(:last-child)::after {
+        left: -1px; /* Vonal igazítása */
+        top: 10px; /* Pont mérethez igazított kezdés */
+        width: 1px;
     }
 
-    .dark-mode .btn-outline-primary {
-      color: #0d6efd !important;
-      border-color: #0d6efd !important;
+    .timeline-date {
+        font-size: 0.9em;
     }
 
-    .dark-mode .btn-outline-primary:hover {
-      color: #fff !important;
-      background-color: #0d6efd !important;
+    .timeline-content h3 {
+        font-size: 1.1em;
     }
 
-    .dark-mode .form-check-input {
-      background-color: #1a1a1a !important;
-      border-color: #404040 !important;
+    .timeline-content p {
+        font-size: 0.9em;
+    }
+}
+
+@media (max-width: 480px) {
+    .timeline-item {
+        padding-left: 5px;
     }
 
-    .dark-mode .form-check-input:checked {
-      background-color: #0d6efd !important;
-      border-color: #0d6efd !important;
+    .timeline-item::before {
+        left: -5px;
+        width: 8px;
+        height: 8px;
     }
 
-    .dark-mode .form-label,
-    .dark-mode .card-title,
-    .dark-mode .text-muted {
-      color: rgba(255, 255, 255, 0.75) !important;
+    .timeline-item:not(:last-child)::after {
+        left: 0; /* Vonal igazítása még kisebb képernyőhöz */
+        width: 1px;
     }
 
-    .dark-mode .table thead th {
-      background-color: #2d2d2d !important;
-      border-color: #404040 !important;
-      color: #fff !important;
+    .timeline-date {
+        font-size: 0.8em;
     }
 
-    .dark-mode .table td {
-      border-color: #404040 !important;
+    .timeline-content h3 {
+        font-size: 1em;
     }
 
-    .dark-mode .img-thumbnail {
-      background-color: #2d2d2d !important;
-      border-color: #404040 !important;
+    .timeline-content p {
+        font-size: 0.8em;
+    }
+}
+
+.halokep img{
+    width: 75%;
+    border-radius: 10px;
+}
+
+/* Alap stílusok */
+#networking {
+    text-align: center;
+}
+
+.slider-container {
+    position: relative;
+    max-width: 75%;
+    margin: auto;
+    overflow: hidden;
+}
+
+/* Képek 75%-os méretre beállítása és sarkok lekerekítése */
+.slider {
+    display: flex;
+    transition: transform 0.5s ease;
+    justify-content: center; /* Képek középre igazítása */
+}
+
+.slide {
+    min-width: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.slider-container img {
+    width: 100%;
+    border-radius: 10px;
+    display: block;
+    margin: auto;
+}
+
+/* Gombok stílusai */
+#networking button {
+    position: absolute;
+    top: 50%;
+    background-color: rgba(0, 0, 0, 0.25);
+    color: white;
+    border: none;
+    padding: 16px;
+    cursor: pointer;
+    z-index: 10;
+    font-size: 18px;
+    transition: 0.3s;
+    transform: translateY(-50%);
+}
+
+/* Gombok pozicionálása a képeken belül */
+.prev {
+    left: 0;
+    border-radius: 0 10px 10px 0px;
+}
+
+.next {
+    right: 0;
+    border-radius: 10px 0 0 10px;
+}
+
+/* Hover hatás a gombokon */
+#networking button:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Letöltés gomb stílusai */
+.download-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(0, 0, 0, 0.25);
+    color: white;
+    padding: 8px 16px;
+    text-decoration: none;
+    font-size: 30px;
+    border-radius: 5px;
+    z-index: 15;
+    transition: background-color 0.3s;
+}
+
+/* Hover hatás a letöltés gombon */
+.download-btn:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* a {
+    text-decoration: none;
+    color: inherit;
+} */
+
+/* Media query 600px alatt */
+@media (max-width: 600px) {
+    .row {
+        flex-direction: column; /* Az elemeket egymás alá rendezi */
+        gap: 10px; /* Csökkenti a távolságot a két item között */
     }
 
-    .switch {
-      position: relative;
-      display: inline-block;
-      width: 60px;
-      height: 34px;
+    .item {
+        flex: none; /* Nem kell kitölteniük az elérhető helyet, csak akkora lesz, amekkora szükséges */
+    }
+}
+
+
+.source-icon {
+    width: 40px; /* Ikon méretének beállítása */
+    height: 40px; /* Ikon méretének beállítása */
+    object-fit: contain;
+    margin-right: 10px; /* Kis távolság az ikon és a szöveg között */
+}
+
+
+/* Responsive design a táblázat számára */
+@media (max-width: 600px) {
+    #poetsTable {
+        overflow-x: auto; /* A táblázat vízszintesen görgethető */
+        -webkit-overflow-scrolling: touch; /* Smooth scrolling a mobilon */
     }
 
-    .switch input {
-      opacity: 0;
-      width: 0;
-      height: 0;
+    /* Táblázat cellák megjelenítése mobilon */
+    #poetsTable th,
+    #poetsTable td {
+        display: table-cell; /* A cellák táblázat cellaként jelennek meg */
+        min-width: 120px; /* Min szélesség a celláknak */
     }
 
-    .slider {
-      position: absolute;
-      cursor: pointer;
-      inset: 0;
-      background-color: #ccc;
-      transition: .4s;
-      border-radius: 34px;
-      border: 2px solid transparent;
+    /* Link hover effektus */
+    .source-content a:hover {
+        color: white;
     }
+}
 
-    .slider:before {
-      position: absolute;
-      content: "";
-      height: 26px;
-      width: 26px;
-      left: 2px;
-      bottom: 2px;
-      background-color: white;
-      transition: .4s;
-      border-radius: 50%;
-    }
 
-    input:checked + .slider {
-      background-color: #2196F3;
-    }
+@keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
 
-    input:checked + .slider:before {
-      transform: translateX(26px);
-    }
-
-    .dark-mode .slider {
-      border-color: white;
-    }
-
-    .search-container,
-    .filter-form,
-    .table-responsive {
-      margin-top: 20px;
-    }
-
-    .card {
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-
-    .table td,
-    .table th {
-      vertical-align: middle;
-      text-align: center;
-    }
-
-    .img-thumbnail {
-      max-width: 100px;
-      height: auto;
-    }
-
-    .btn-outline-primary {
-      padding: 0.25rem 0.5rem;
-      font-size: 0.875rem;
-    }
-
-    .author-row {
-      cursor: pointer;
-      transition: background-color 0.2s;
-    }
-
-    .author-row:hover {
-      background-color: rgba(0, 123, 255, 0.05);
-    }
-
-    .dark-mode .author-row:hover {
-      background-color: rgba(255, 255, 255, 0.1);
-    }
-
-    .works-container {
-      display: none;
-      padding: 0;
-    }
-
-    .works-container.show {
-      display: table-row;
-    }
-
-    .works-table {
-      margin: 0;
-      width: 100%;
-    }
-
-    .works-table th,
-    .works-table td {
-      width: 25%;
-      padding: 12px 15px;
-      text-align: center;
-      vertical-align: middle;
-    }
-
-    .works-table tbody tr {
-      height: 60px;
-    }
-
-    .works-table th {
-      background-color: rgba(0, 0, 0, 0.03);
-    }
-
-    .dark-mode .works-table th {
-      background-color: rgba(255, 255, 255, 0.05);
-    }
-
-    .works-cell {
-      padding: 0 !important;
-    }
-
-    .expand-icon {
-      display: inline-block;
-      width: 24px;
-      height: 24px;
-      line-height: 24px;
-      text-align: center;
-      transition: transform 0.2s;
-    }
-
-    .expanded .expand-icon {
-      transform: rotate(90deg);
-    }
-
-    .works-container .p-3 {
-      padding: 0 !important;
-    }
-
-    .expanded {
-      background-color: rgba(0, 123, 255, 0.03);
-    }
-
-    .dark-mode .expanded {
-      background-color: rgba(255, 255, 255, 0.03);
-    }
-
-    .table th:nth-child(5),
-    .table td:nth-child(5) {
-      width: 250px;
-      word-wrap: break-word;
-    }
-
-    .table td:nth-child(5):hover {
-      white-space: normal;
-      overflow: visible;
-      position: relative;
-      z-index: 1;
-    }
-
-    .demo-badge {
-      font-size: 0.85rem;
-      color: #6c757d;
-    }
-  </style>
+    </style>
 </head>
 <body>
-  <div class="container py-4">
-    <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
-      <div>
-        <h1 class="mb-1">Művek Listázása és Szűrése</h1>
-        <p class="demo-badge mb-0">Statikus bemutató változat, az adatbázis tartalma beégetve.</p>
-      </div>
-      <div class="d-flex align-items-center gap-3 flex-wrap">
-        <div class="form-check form-switch">
-          <input class="form-check-input" type="checkbox" id="darkModeToggle">
-          <label class="form-check-label" for="darkModeToggle">Sötét mód</label>
+<div class="navbar">
+    <nav>
+        <div class="hamburger" id="hamburger"><i class="fas fa-bars"></i></div>
+        <ul id="navList">
+            <li><a href="#home" data-section="landing" id="landingnav">Kezdőlap</a></li>
+            <li><a href="#about" data-section="about" id="aboutnav">Tagok</a></li>
+            <li><a href="#networking" data-section="networking" id="networkingnav">Hálózat</a></li>
+            <li><a href="#history" data-section="history" id="historynav">Töri</a></li>
+            <li><a href="#poets" data-section="poets" id="poetsnav">Magyar</a></li>
+            <li><a href="#timeline" data-section="timeline" id="timelinenav">Idővonal</a></li>
+            <li><a href="#sources" data-section="sources" id="sourcesnav">Források</a></li>
+        </ul>
+    </nav>
+</div>
+
+<div id="landing" class="section active">
+    <h1>Üdvözöllek a weboldalon!</h1>
+    <p>Ezt a weboldalt egy iskolai projektünk céljából hoztuk létre, reméljük tetszik.</p>
+</div>
+
+<div id="about" class="section">
+    <h1>Tagok</h1>
+    <div class="members-container" id="membersContainer"></div>
+</div>
+
+<div id="networking" class="section">
+    <div class="slider-container">
+        <button class="prev" type="button" id="prevSlide">&#10094;</button>
+        <div class="slider">
+            <div class="slide">
+                <img src="img/halo.png" alt="halo projekt">
+                <a href="sources/halozat.pkt" download="halozat.pkt" class="download-btn"><i class="fa-solid fa-download"></i></a>
+            </div>
+            <div class="slide">
+                <img src="img/fizikai.png" alt="fizikai projekt">
+                <a href="sources/halozat.pkt" download="halozat.pkt" class="download-btn"><i class="fa-solid fa-download"></i></a>
+            </div>
         </div>
-        <button type="button" class="btn btn-secondary" disabled>Admin felület csak az eredeti PHP verzióban</button>
-      </div>
+        <button class="next" type="button" id="nextSlide">&#10095;</button>
     </div>
+</div>
 
-    <div class="card mb-4">
-      <div class="card-body">
-        <div class="d-flex justify-content-between align-items-center mb-3">
-          <h5 class="card-title mb-0">Keresés</h5>
-          <div class="search-mode-switch">
-            <label class="switch">
-              <input type="checkbox" id="searchModeToggle">
-              <span class="slider"></span>
-            </label>
-          </div>
-        </div>
+<div id="history" class="section">
+    <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vSObWorUybbvvctOp5lXNDAkEladBVG3FvMgY1dJNEtWRVLu-CQp_I00goDznKPmg/embed?start=true&loop=true&delayms=5000" frameborder="0" width="1270" height="750" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+    <a href="https://docs.google.com/presentation/d/e/2PACX-1vSObWorUybbvvctOp5lXNDAkEladBVG3FvMgY1dJNEtWRVLu-CQp_I00goDznKPmg/embed?start=true&loop=true&delayms=5000" target="_blank" rel="noopener noreferrer">Prezentáció megnyitása</a>
+</div>
 
-        <div id="simpleSearch" class="search-container">
-          <div class="input-group">
-            <input
-              type="text"
-              id="simpleSearchInput"
-              class="form-control"
-              placeholder="Keresés (használj vesszőt több kifejezéshez)"
-              autocomplete="off"
-            >
-          </div>
-        </div>
-
-        <div id="advancedSearch" class="filter-form" style="display: none;">
-          <form id="advancedSearchForm" class="row g-3">
-            <div class="col-md-6">
-              <label for="author" class="form-label">Szerző:</label>
-              <select id="author" name="author" class="form-select">
-                <option value="">Minden szerző</option>
-              </select>
-            </div>
-
-            <div class="col-md-6">
-              <label for="genre" class="form-label">Műfaj:</label>
-              <select id="genre" name="genre" class="form-select">
-                <option value="">Minden műfaj</option>
-              </select>
-            </div>
-
-            <div class="col-md-3">
-              <label for="birth_from" class="form-label">Születési dátum (tól):</label>
-              <input type="date" id="birth_from" name="birth_from" class="form-control">
-            </div>
-
-            <div class="col-md-3">
-              <label for="birth_to" class="form-label">Születési dátum (ig):</label>
-              <input type="date" id="birth_to" name="birth_to" class="form-control">
-            </div>
-
-            <div class="col-md-3">
-              <label for="death_from" class="form-label">Halálozási dátum (tól):</label>
-              <input type="date" id="death_from" name="death_from" class="form-control">
-            </div>
-
-            <div class="col-md-3">
-              <label for="death_to" class="form-label">Halálozási dátum (ig):</label>
-              <input type="date" id="death_to" name="death_to" class="form-control">
-            </div>
-
-            <div class="col-12">
-              <button type="submit" class="btn btn-primary">Szűrés</button>
-              <button type="button" id="resetAdvanced" class="btn btn-outline-secondary ms-2">Alaphelyzet</button>
-            </div>
-          </form>
-        </div>
-      </div>
+<div id="poets" class="section">
+    <h2>Költők Információi</h2>
+    <div class="search-box">
+        <input type="text" id="search" class="search-input search" placeholder="Keresés költő névre...">
+        <button class="search-button" type="button" id="searchButton"><i class="fas fa-search"></i></button>
     </div>
-
-    <div class="table-responsive">
-      <table class="table table-striped table-hover">
+    <table id="poetsTable">
         <thead>
-          <tr>
-            <th style="width: 40px;" class="text-center"></th>
-            <th class="text-center">Szerző</th>
-            <th class="text-center">Születési Dátum</th>
-            <th class="text-center">Halálozási Dátum</th>
-            <th class="text-center">Szerző Leírása</th>
-            <th class="text-center">Szerző Képe</th>
-          </tr>
+            <tr>
+                <th>Név</th>
+                <th>Születési idő</th>
+                <th>Halálozási idő</th>
+                <th>Származás</th>
+                <th>Jelentős művek</th>
+            </tr>
         </thead>
-        <tbody id="resultsBody">
-          <tr>
-            <td colspan="6" class="text-center">Betöltés...</td>
-          </tr>
-        </tbody>
-      </table>
+        <tbody id="poetsTableBody"></tbody>
+    </table>
+</div>
+
+<div id="timeline" class="section">
+    <ul class="timeline" id="timelineList"></ul>
+</div>
+
+<div id="sources" class="section">
+    <div class="row">
+        <div class="item">
+            <h1>Források</h1>
+            <div id="sourcesList"></div>
+        </div>
+        <div class="item">
+            <h1>Programok</h1>
+            <div id="programsList"></div>
+        </div>
     </div>
-  </div>
+</div>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script>
-    const state = {
-      authors: [],
-      worksByAuthor: new Map(),
-      genresById: new Map(),
-      expandedAuthorId: null,
-      dataLoaded: false
-    };
+<footer>
+    <p>&copy; 2024 Bodor Norbert Bence - Véber-Jurassa Márk</p>
+</footer>
 
-    function normalize(value) {
-      return String(value || "")
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
-        .toLowerCase();
+<script id="baked-data" type="application/json">{
+  "poets": [
+    {
+      "id": 1,
+      "name": "Petőfi Sándor",
+      "birth_date": "1823-01-01",
+      "death_date": "1849-07-31",
+      "nationality": "Magyar",
+      "notable_works": "Nemzeti dal, János vitéz",
+      "biography": "Petőfi Sándor (1823–1849) a magyar irodalom egyik legnagyobb alakja, aki a romantika korszakában írta legfontosabb műveit. Legismertebb költői öröksége a szabadság, a szerelem és a nemzeti függetlenség iránti szenvedélyes elköteleződéséből fakad. Petőfi versei, mint a *Nemzeti dal* és a *Tavaszi Szél Vizet Áraszt*, a magyar forradalom szellemiségét és a nép szabadságvágyát hirdették. Rövid élete, amely mindössze 26 évet ölelt fel, tragikus módon a segesvári csatában ért véget, ahol a szabadságharc egyik hőseként tűnt el. Művei és eszméi mindmáig élénken hatnak a magyar kultúrában és történelemben."
+    },
+    {
+      "id": 2,
+      "name": "Arany János",
+      "birth_date": "1817-03-02",
+      "death_date": "1882-10-22",
+      "nationality": "Magyar",
+      "notable_works": "Toldi, Buda halála",
+      "biography": "Arany János (1817–1882) a magyar irodalom egyik legnagyobb költője és epikus mestere, aki a romantika és a realizmus határán alkotott. Legismertebb műve, a *Toldi* című eposz, a magyar nép hősi eszményeit és a nemzeti múlt dicsőségét örökíti meg. Arany költészete mélyen humanista és filozofikus, gyakran foglalkozott a sors kérdéseivel, a közösség és egyén viszonyával. Emellett balladái, mint a *Szép Ilonka* vagy a *A walesi bárdok*, az emberi lélek mélységeit és a tragikumot ábrázolják páratlan erővel. A magyar irodalom klasszikusaként Arany János munkássága a nemzeti identitás fontos részévé vált, és művei máig meghatározóak a magyar kultúrában."
+    },
+    {
+      "id": 3,
+      "name": "Ady Endre",
+      "birth_date": "1877-11-22",
+      "death_date": "1919-01-27",
+      "nationality": "Román",
+      "notable_works": "Új versek, A magyar Ugaron",
+      "biography": "Ady Endre 1877. november 22-én született a bihari Érmindszenten, egy középiskolai tanár családjában. Fiatal korában jogi tanulmányokat folytatott, de hamarosan a költészet vonzotta, és 1903-ban Pestre költözött, ahol a Nyugat című folyóirat köréhez csatlakozott. Ady lírája radikálisan újító volt, a modern magyar irodalom egyik legfontosabb alakjává vált, műveiben a szerelem, a halál, a társadalom kritikája és a nemzeti kérdések kerültek előtérbe. Élete során súlyos betegségekkel küzdött, és a politikai és szellemi válságok mély hatással voltak költészetére. 1919. január 27-én, mindössze 41 évesen halt meg, de öröksége máig meghatározza a magyar irodalmat."
+    },
+    {
+      "id": 4,
+      "name": "Babits Mihály",
+      "birth_date": "1883-11-26",
+      "death_date": "1941-08-04",
+      "nationality": "Magyar",
+      "notable_works": "Versek, Tartarus",
+      "biography": "Babits Mihály 1883. november 26-án született Szekszárdon, és már fiatalon a magyar irodalom egyik legnagyobb alakjává vált. Az egyetemen filozófiát és latin nyelvet tanult, majd a Nyugat című folyóirat köréhez csatlakozott, amely a magyar modernizmus központjává vált. Költészete a filozófia, a vallás és a létezés mély kérdéseit boncolgatta, míg prózai és esszéi a művészet, az irodalom és a társadalom szoros összefonódását vizsgálták. Babits 1927-től a magyar irodalomtörténet egyik legnagyobb hatású műfordítója is volt, különösen a klasszikusokat és a modern angolszász irodalmat ültette át magyarra. 1941. augusztus 4-én, 57 éves korában hunyt el, de öröksége a magyar irodalomban mindmáig meghatározó."
+    },
+    {
+      "id": 5,
+      "name": "Kosztolányi Dezső",
+      "birth_date": "1885-03-29",
+      "death_date": "1936-11-03",
+      "nationality": "Szerb",
+      "notable_works": "Névtelen virágok, Bájolás",
+      "biography": "Kosztolányi Dezső 1885. március 29-én született Szabadkán, és már fiatalon kifejezte irodalmi érdeklődését. Pályafutása során a Nyugat című folyóirat munkatársaként vált ismertté, de számos más irodalmi folyóiratban is publikált. Kosztolányi költészete a magyar modernizmus egyik legjelentősebb ágát képviselte, és írásaiban az emberi létezés kérdéseit, a társadalmi problémákat és az egyéni drámákat is elemzett. Regényei és novellái mellett fontos szerepet játszott a műfordításban is, többek között Thomas Mann és Rainer Maria Rilke műveit ültette át magyarra. 1936. november 3-án hunyt el Budapesten, de életműve mindmáig alapvető része a magyar irodalomnak."
     }
-
-    function escapeHtml(value) {
-      return String(value ?? "")
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#39;");
+  ],
+  "programs": [
+    {
+      "id": 1,
+      "title": "Vscode",
+      "link": "https://code.visualstudio.com/",
+      "icon": "icons/vsc.png"
+    },
+    {
+      "id": 2,
+      "title": "Discord",
+      "link": "https://discord.com/",
+      "icon": "icons/discord.png"
+    },
+    {
+      "id": 3,
+      "title": "WireGuard",
+      "link": "https://www.wireguard.com/",
+      "icon": "icons/wireguard.png"
+    },
+    {
+      "id": 4,
+      "title": "FileBrowser",
+      "link": "https://filebrowser.org/",
+      "icon": "icons/fb.png"
     }
-
-    function populateSelect(select, items, valueKey, labelKey) {
-      for (const item of items) {
-        const option = document.createElement("option");
-        option.value = item[valueKey];
-        option.textContent = item[labelKey];
-        select.appendChild(option);
-      }
+  ],
+  "sources": [
+    {
+      "id": 1,
+      "title": "ChatGPT",
+      "link": "https://chatgpt.com/",
+      "icon": "icons/chatgpt.png"
+    },
+    {
+      "id": 2,
+      "title": "Google",
+      "link": "https://google.hu",
+      "icon": "icons/google.png"
+    },
+    {
+      "id": 3,
+      "title": "Netacad",
+      "link": "https://www.netacad.com/",
+      "icon": "icons/netacad.png"
     }
-
-    function matchesDateRange(value, from, to) {
-      if (!value) {
-        return !from && !to;
-      }
-      if (from && value < from) {
-        return false;
-      }
-      if (to && value > to) {
-        return false;
-      }
-      return true;
+  ],
+  "timeline_events": [
+    {
+      "id": 11,
+      "date": "2024-11-10",
+      "title": "Adatbázis",
+      "description": "Elkezdtük a PHP alapú weblapot fejleszteni."
+    },
+    {
+      "id": 12,
+      "date": "2024-11-08",
+      "title": "Történelem",
+      "description": "Elkezdtük és be is fejeztük a prezentációt."
+    },
+    {
+      "id": 13,
+      "date": "2024-12-07",
+      "title": "Adatbázis",
+      "description": "Befejeztük a PHP alapú weblap fejlesztését."
+    },
+    {
+      "id": 14,
+      "date": "2024-11-20",
+      "title": "Magyar",
+      "description": "Létrehoztuk a magyar projekthez a költők adatbázisát."
+    },
+    {
+      "id": 15,
+      "date": "2024-12-01",
+      "title": "Hálózat",
+      "description": "Lemodelleztük a kért hálózatot világháborús tematikával."
     }
-
-    function getSimpleTerms() {
-      return document.getElementById("simpleSearchInput").value
-        .split(",")
-        .map((term) => normalize(term.trim()))
-        .filter(Boolean);
+  ],
+  "users": [
+    {
+      "id": 1,
+      "name": "Bodor Norbert",
+      "weboldal": "https://nrbrt.hu",
+      "image": "img/nrbrt.png"
+    },
+    {
+      "id": 2,
+      "name": "Véber-Jurassa Márk",
+      "weboldal": "https://markveber.hu",
+      "image": "img/markveber.png"
     }
+  ]
+}</script>
+<script>
+const bakedData = JSON.parse(document.getElementById('baked-data').textContent);
+const state = {
+  poets: bakedData.poets || [],
+  users: bakedData.users || [],
+  sources: bakedData.sources || [],
+  programs: bakedData.programs || [],
+  timeline: (bakedData.timeline_events || []).slice().sort((a, b) => a.date.localeCompare(b.date)),
+  currentSlide: 0
+};
 
-    function getAdvancedFilters() {
-      return {
-        author: document.getElementById("author").value,
-        genre: document.getElementById("genre").value,
-        birthFrom: document.getElementById("birth_from").value,
-        birthTo: document.getElementById("birth_to").value,
-        deathFrom: document.getElementById("death_from").value,
-        deathTo: document.getElementById("death_to").value
-      };
+function escapeHtml(value) {
+  return String(value ?? '')
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#39;');
+}
+
+function showSection(sectionId) {
+  const sections = document.getElementsByClassName('section');
+  for (let i = 0; i < sections.length; i += 1) {
+    sections[i].classList.remove('active');
+    sections[i].style.display = 'none';
+  }
+  const activeSection = document.getElementById(sectionId);
+  if (!activeSection) return;
+  activeSection.style.display = 'block';
+  setTimeout(() => activeSection.classList.add('active'), 10);
+  document.querySelectorAll('nav ul li a').forEach((item) => item.classList.remove('anyad'));
+  const nav = document.getElementById(sectionId + 'nav');
+  if (nav) nav.classList.add('anyad');
+}
+
+function renderMembers() {
+  document.getElementById('membersContainer').innerHTML = state.users.map((user) => `
+    <div class="member">
+      <img src="${escapeHtml(user.image)}" alt="${escapeHtml(user.name)}">
+      <div class="anyaad">
+        <a href="${escapeHtml(user.weboldal)}" target="_blank" rel="noopener noreferrer">${escapeHtml(user.name)}</a>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderList(items, targetId) {
+  document.getElementById(targetId).innerHTML = items.map((item) => `
+    <div class="source-item">
+      <div class="source-content">
+        <img src="${escapeHtml(item.icon)}" alt="${escapeHtml(item.title)} logo" class="source-icon">
+        <a href="${escapeHtml(item.link)}" target="_blank" rel="noopener noreferrer">${escapeHtml(item.title)}</a>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderTimeline() {
+  document.getElementById('timelineList').innerHTML = state.timeline.map((event) => `
+    <li class="timeline-item">
+      <div class="timeline-date">${escapeHtml(event.date)}</div>
+      <div class="timeline-content">
+        <h3>${escapeHtml(event.title)}</h3>
+        <p>${escapeHtml(event.description)}</p>
+      </div>
+    </li>
+  `).join('');
+}
+
+function toggleBiography(row) {
+  const bioRow = row.nextElementSibling;
+  document.querySelectorAll('.biography-row').forEach((openRow) => {
+    if (openRow !== bioRow) {
+      openRow.style.display = 'none';
+      if (openRow.previousElementSibling) openRow.previousElementSibling.classList.remove('active');
     }
+  });
+  bioRow.style.display = bioRow.style.display === 'table-row' ? 'none' : 'table-row';
+  row.classList.toggle('active');
+}
 
-    function filterData() {
-      const advancedMode = document.getElementById("searchModeToggle").checked;
-      const terms = getSimpleTerms();
-      const filters = getAdvancedFilters();
+function renderPoets(filter = '') {
+  const normalized = filter.trim().toLowerCase();
+  const filtered = state.poets.filter((poet) => poet.name.toLowerCase().includes(normalized));
+  document.getElementById('poetsTableBody').innerHTML = filtered.map((poet) => `
+    <tr class="poet-row">
+      <td><span class="arrow">&#9662;</span>${escapeHtml(poet.name)}</td>
+      <td>${escapeHtml(poet.birth_date)}</td>
+      <td>${escapeHtml(poet.death_date)}</td>
+      <td>${escapeHtml(poet.nationality)}</td>
+      <td>${escapeHtml(poet.notable_works)}</td>
+    </tr>
+    <tr class="biography-row"><td colspan="5">${escapeHtml(poet.biography)}</td></tr>
+  `).join('');
+  document.querySelectorAll('.poet-row').forEach((row) => row.addEventListener('click', () => toggleBiography(row)));
+}
 
-      return state.authors
-        .filter((author) => {
-          const works = state.worksByAuthor.get(author.sz_id) || [];
+function updateSlides() {
+  const slides = document.querySelectorAll('.slide');
+  slides.forEach((slide, index) => {
+    slide.style.display = index === state.currentSlide ? 'block' : 'none';
+  });
+}
 
-          if (!advancedMode) {
-            if (!terms.length) {
-              return true;
-            }
+function changeSlide(direction) {
+  const slides = document.querySelectorAll('.slide');
+  if (!slides.length) return;
+  state.currentSlide += direction;
+  if (state.currentSlide >= slides.length) state.currentSlide = 0;
+  if (state.currentSlide < 0) state.currentSlide = slides.length - 1;
+  updateSlides();
+}
 
-            const haystack = normalize([
-              author.sz_neve,
-              author.sz_szul_ido,
-              author.sz_halala,
-              author.sz_leiras
-            ].join(" "));
+document.addEventListener('DOMContentLoaded', () => {
+  renderMembers();
+  renderList(state.sources, 'sourcesList');
+  renderList(state.programs, 'programsList');
+  renderTimeline();
+  renderPoets();
 
-            return terms.some((term) => {
-              if (haystack.includes(term)) {
-                return true;
-              }
-
-              return works.some((work) =>
-                normalize(`${work.mu_cim} ${work.me_leiras}`).includes(term)
-              );
-            });
-          }
-
-          if (filters.author && String(author.sz_id) !== filters.author) {
-            return false;
-          }
-
-          if (!matchesDateRange(author.sz_szul_ido, filters.birthFrom, filters.birthTo)) {
-            return false;
-          }
-
-          if (!matchesDateRange(author.sz_halala, filters.deathFrom, filters.deathTo)) {
-            return false;
-          }
-
-          return true;
-        })
-        .map((author) => {
-          const works = state.worksByAuthor.get(author.sz_id) || [];
-          const advancedMode = document.getElementById("searchModeToggle").checked;
-
-          if (!advancedMode) {
-            const terms = getSimpleTerms();
-
-            if (!terms.length) {
-              return { author, works };
-            }
-
-            const matchingWorks = works.filter((work) =>
-              terms.some((term) =>
-                normalize(`${work.mu_cim} ${work.me_leiras}`).includes(term)
-              )
-            );
-
-            return { author, works: matchingWorks, allWorks: works };
-          }
-
-          const filters = getAdvancedFilters();
-          const filteredWorks = filters.genre
-            ? works.filter((work) => String(work.mufaj_id) === filters.genre)
-            : works;
-
-          return { author, works: filteredWorks };
-        });
-    }
-
-    function renderResults() {
-      const tbody = document.getElementById("resultsBody");
-      const rows = filterData();
-
-      if (!rows.length) {
-        tbody.innerHTML = '<tr><td colspan="6" class="text-center">Nincs találat!</td></tr>';
-        return;
-      }
-
-      tbody.innerHTML = rows.map(({ author, works, allWorks }) => {
-        const visibleWorks = works;
-        const originalWorks = allWorks || works;
-        const worksHtml = visibleWorks.length
-          ? `
-            <table class="table table-sm works-table">
-              <thead>
-                <tr>
-                  <th class="text-center">Mű Cím</th>
-                  <th class="text-center">Műfaj</th>
-                  <th class="text-center">Keletkezés Dátuma</th>
-                  <th class="text-center">Mű Leírása</th>
-                </tr>
-              </thead>
-              <tbody>
-                ${visibleWorks.map((work) => `
-                  <tr>
-                    <td>
-                      ${work.mu_link
-                        ? `<a href="${escapeHtml(work.mu_link)}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-primary">${escapeHtml(work.mu_cim)}</a>`
-                        : escapeHtml(work.mu_cim)}
-                    </td>
-                    <td>${escapeHtml(work.mufaj)}</td>
-                    <td>${escapeHtml(work.mu_kelt)}</td>
-                    <td>${escapeHtml(work.me_leiras)}</td>
-                  </tr>
-                `).join("")}
-              </tbody>
-            </table>
-          `
-          : `<p class="text-muted text-center py-3">${originalWorks.length ? "Nincs a szűrésnek megfelelő mű ehhez a szerzőhöz." : "Nincs mű hozzárendelve ehhez a szerzőhöz."}</p>`;
-
-        const isExpanded = state.expandedAuthorId === author.sz_id;
-
-        return `
-          <tr class="author-row ${isExpanded ? "expanded" : ""}" data-author-id="${author.sz_id}">
-            <td><span class="expand-icon">▶</span></td>
-            <td>${escapeHtml(author.sz_neve)}</td>
-            <td>${escapeHtml(author.sz_szul_ido)}</td>
-            <td>${escapeHtml(author.sz_halala)}</td>
-            <td>${escapeHtml(author.sz_leiras)}</td>
-            <td>${author.sz_kep ? `<img src="${escapeHtml(author.sz_kep)}" alt="Szerző képe" class="img-thumbnail">` : ""}</td>
-          </tr>
-          <tr class="works-container ${isExpanded ? "show" : ""}" id="works-${author.sz_id}">
-            <td colspan="6" class="works-cell p-0">
-              <div class="p-3">${worksHtml}</div>
-            </td>
-          </tr>
-        `;
-      }).join("");
-
-      attachAuthorRowHandlers();
-    }
-
-    function attachAuthorRowHandlers() {
-      document.querySelectorAll(".author-row").forEach((row) => {
-        row.addEventListener("click", () => {
-          const authorId = Number(row.getAttribute("data-author-id"));
-          state.expandedAuthorId = state.expandedAuthorId === authorId ? null : authorId;
-          renderResults();
-        });
-      });
-    }
-
-    function applySearchMode() {
-      const advancedMode = document.getElementById("searchModeToggle").checked;
-      document.getElementById("simpleSearch").style.display = advancedMode ? "none" : "block";
-      document.getElementById("advancedSearch").style.display = advancedMode ? "block" : "none";
-      localStorage.setItem("searchModeStatic", advancedMode ? "advanced" : "simple");
-      state.expandedAuthorId = null;
-      renderResults();
-    }
-
-    async function loadData() {
-      const response = await fetch("data.json");
-      const payload = await response.json();
-
-      const authors = payload["szerzők"] || [];
-      const genres = payload["műfajok"] || [];
-      const works = payload["művek"] || [];
-
-      state.authors = authors;
-      state.genresById = new Map(genres.map((genre) => [genre.mufaj_id, genre.mufaj]));
-      state.worksByAuthor = new Map();
-
-      for (const work of works) {
-        const hydrated = {
-          ...work,
-          mufaj: state.genresById.get(work.mufaj_id) || ""
-        };
-
-        if (!state.worksByAuthor.has(work.sz_id)) {
-          state.worksByAuthor.set(work.sz_id, []);
-        }
-
-        state.worksByAuthor.get(work.sz_id).push(hydrated);
-      }
-
-      populateSelect(document.getElementById("author"), authors, "sz_id", "sz_neve");
-      populateSelect(document.getElementById("genre"), genres, "mufaj_id", "mufaj");
-
-      state.dataLoaded = true;
-      renderResults();
-    }
-
-    document.addEventListener("DOMContentLoaded", async () => {
-      const html = document.documentElement;
-      const darkModeToggle = document.getElementById("darkModeToggle");
-      const searchModeToggle = document.getElementById("searchModeToggle");
-      const simpleSearchInput = document.getElementById("simpleSearchInput");
-      const advancedSearchForm = document.getElementById("advancedSearchForm");
-      const resetAdvanced = document.getElementById("resetAdvanced");
-
-      if (localStorage.getItem("darkMode") === "true") {
-        document.body.classList.add("dark-mode");
-        html.setAttribute("data-bs-theme", "dark");
-        darkModeToggle.checked = true;
-      }
-
-      const savedMode = localStorage.getItem("searchModeStatic");
-      searchModeToggle.checked = savedMode === "advanced";
-
-      darkModeToggle.addEventListener("change", function () {
-        if (this.checked) {
-          document.body.classList.add("dark-mode");
-          html.setAttribute("data-bs-theme", "dark");
-          localStorage.setItem("darkMode", "true");
-        } else {
-          document.body.classList.remove("dark-mode");
-          html.setAttribute("data-bs-theme", "light");
-          localStorage.setItem("darkMode", "false");
-        }
-      });
-
-      searchModeToggle.addEventListener("change", applySearchMode);
-
-      let searchTimeout;
-      simpleSearchInput.addEventListener("input", () => {
-        clearTimeout(searchTimeout);
-        searchTimeout = setTimeout(() => {
-          state.expandedAuthorId = null;
-          renderResults();
-        }, 200);
-      });
-
-      advancedSearchForm.addEventListener("submit", (event) => {
-        event.preventDefault();
-        state.expandedAuthorId = null;
-        renderResults();
-      });
-
-      advancedSearchForm.addEventListener("change", () => {
-        state.expandedAuthorId = null;
-        renderResults();
-      });
-
-      resetAdvanced.addEventListener("click", () => {
-        advancedSearchForm.reset();
-        state.expandedAuthorId = null;
-        renderResults();
-      });
-
-      try {
-        await loadData();
-        applySearchMode();
-      } catch (error) {
-        document.getElementById("resultsBody").innerHTML = `<tr><td colspan="6" class="text-center">Nem sikerült betölteni az adatokat: ${escapeHtml(error.message)}</td></tr>`;
-      }
+  document.querySelectorAll('#navList a').forEach((link) => {
+    link.addEventListener('click', function(event) {
+      const sectionId = this.dataset.section;
+      if (!sectionId) return;
+      event.preventDefault();
+      location.hash = this.getAttribute('href');
+      showSection(sectionId);
+      document.getElementById('navList').classList.remove('show');
     });
-  </script>
+  });
+
+  document.getElementById('hamburger').addEventListener('click', (event) => {
+    document.getElementById('navList').classList.toggle('show');
+    event.stopPropagation();
+  });
+
+  document.addEventListener('click', (event) => {
+    const navList = document.getElementById('navList');
+    const hamburger = document.getElementById('hamburger');
+    if (!hamburger.contains(event.target) && !navList.contains(event.target)) {
+      navList.classList.remove('show');
+    }
+  });
+
+  document.getElementById('search').addEventListener('input', function() { renderPoets(this.value); });
+  document.getElementById('searchButton').addEventListener('click', () => renderPoets(document.getElementById('search').value));
+  document.getElementById('prevSlide').addEventListener('click', () => changeSlide(-1));
+  document.getElementById('nextSlide').addEventListener('click', () => changeSlide(1));
+
+  window.addEventListener('hashchange', () => {
+    const section = location.hash.substring(1);
+    showSection(section === 'home' || !section ? 'landing' : section);
+  });
+
+  updateSlides();
+  const section = location.hash.substring(1);
+  if (!section || section === 'home') {
+    location.hash = '#home';
+    showSection('landing');
+  } else {
+    showSection(section);
+  }
+});
+</script>
 </body>
 </html>

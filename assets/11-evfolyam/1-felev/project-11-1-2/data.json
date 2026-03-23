@@ -1,224 +1,141 @@
 {
-  "műfajok": [
+  "poets": [
     {
-      "mufaj_id": 1,
-      "mufaj": "Líra"
+      "id": 1,
+      "name": "Petőfi Sándor",
+      "birth_date": "1823-01-01",
+      "death_date": "1849-07-31",
+      "nationality": "Magyar",
+      "notable_works": "Nemzeti dal, János vitéz",
+      "biography": "Petőfi Sándor (1823–1849) a magyar irodalom egyik legnagyobb alakja, aki a romantika korszakában írta legfontosabb műveit. Legismertebb költői öröksége a szabadság, a szerelem és a nemzeti függetlenség iránti szenvedélyes elköteleződéséből fakad. Petőfi versei, mint a *Nemzeti dal* és a *Tavaszi Szél Vizet Áraszt*, a magyar forradalom szellemiségét és a nép szabadságvágyát hirdették. Rövid élete, amely mindössze 26 évet ölelt fel, tragikus módon a segesvári csatában ért véget, ahol a szabadságharc egyik hőseként tűnt el. Művei és eszméi mindmáig élénken hatnak a magyar kultúrában és történelemben."
     },
     {
-      "mufaj_id": 3,
-      "mufaj": "Elbeszélés"
+      "id": 2,
+      "name": "Arany János",
+      "birth_date": "1817-03-02",
+      "death_date": "1882-10-22",
+      "nationality": "Magyar",
+      "notable_works": "Toldi, Buda halála",
+      "biography": "Arany János (1817–1882) a magyar irodalom egyik legnagyobb költője és epikus mestere, aki a romantika és a realizmus határán alkotott. Legismertebb műve, a *Toldi* című eposz, a magyar nép hősi eszményeit és a nemzeti múlt dicsőségét örökíti meg. Arany költészete mélyen humanista és filozofikus, gyakran foglalkozott a sors kérdéseivel, a közösség és egyén viszonyával. Emellett balladái, mint a *Szép Ilonka* vagy a *A walesi bárdok*, az emberi lélek mélységeit és a tragikumot ábrázolják páratlan erővel. A magyar irodalom klasszikusaként Arany János munkássága a nemzeti identitás fontos részévé vált, és művei máig meghatározóak a magyar kultúrában."
     },
     {
-      "mufaj_id": 10,
-      "mufaj": "Regény"
+      "id": 3,
+      "name": "Ady Endre",
+      "birth_date": "1877-11-22",
+      "death_date": "1919-01-27",
+      "nationality": "Román",
+      "notable_works": "Új versek, A magyar Ugaron",
+      "biography": "Ady Endre 1877. november 22-én született a bihari Érmindszenten, egy középiskolai tanár családjában. Fiatal korában jogi tanulmányokat folytatott, de hamarosan a költészet vonzotta, és 1903-ban Pestre költözött, ahol a Nyugat című folyóirat köréhez csatlakozott. Ady lírája radikálisan újító volt, a modern magyar irodalom egyik legfontosabb alakjává vált, műveiben a szerelem, a halál, a társadalom kritikája és a nemzeti kérdések kerültek előtérbe. Élete során súlyos betegségekkel küzdött, és a politikai és szellemi válságok mély hatással voltak költészetére. 1919. január 27-én, mindössze 41 évesen halt meg, de öröksége máig meghatározza a magyar irodalmat."
     },
     {
-      "mufaj_id": 11,
-      "mufaj": "Szonett"
+      "id": 4,
+      "name": "Babits Mihály",
+      "birth_date": "1883-11-26",
+      "death_date": "1941-08-04",
+      "nationality": "Magyar",
+      "notable_works": "Versek, Tartarus",
+      "biography": "Babits Mihály 1883. november 26-án született Szekszárdon, és már fiatalon a magyar irodalom egyik legnagyobb alakjává vált. Az egyetemen filozófiát és latin nyelvet tanult, majd a Nyugat című folyóirat köréhez csatlakozott, amely a magyar modernizmus központjává vált. Költészete a filozófia, a vallás és a létezés mély kérdéseit boncolgatta, míg prózai és esszéi a művészet, az irodalom és a társadalom szoros összefonódását vizsgálták. Babits 1927-től a magyar irodalomtörténet egyik legnagyobb hatású műfordítója is volt, különösen a klasszikusokat és a modern angolszász irodalmat ültette át magyarra. 1941. augusztus 4-én, 57 éves korában hunyt el, de öröksége a magyar irodalomban mindmáig meghatározó."
     },
     {
-      "mufaj_id": 12,
-      "mufaj": "Szociográfia"
+      "id": 5,
+      "name": "Kosztolányi Dezső",
+      "birth_date": "1885-03-29",
+      "death_date": "1936-11-03",
+      "nationality": "Szerb",
+      "notable_works": "Névtelen virágok, Bájolás",
+      "biography": "Kosztolányi Dezső 1885. március 29-én született Szabadkán, és már fiatalon kifejezte irodalmi érdeklődését. Pályafutása során a Nyugat című folyóirat munkatársaként vált ismertté, de számos más irodalmi folyóiratban is publikált. Kosztolányi költészete a magyar modernizmus egyik legjelentősebb ágát képviselte, és írásaiban az emberi létezés kérdéseit, a társadalmi problémákat és az egyéni drámákat is elemzett. Regényei és novellái mellett fontos szerepet játszott a műfordításban is, többek között Thomas Mann és Rainer Maria Rilke műveit ültette át magyarra. 1936. november 3-án hunyt el Budapesten, de életműve mindmáig alapvető része a magyar irodalomnak."
     }
   ],
-  "művek": [
+  "programs": [
     {
-      "mu_id": 9,
-      "sz_id": 2,
-      "mu_cim": "A köpönyeg",
-      "mufaj_id": 3,
-      "me_leiras": "A köpönyeg egy rövid szatirikus elbeszélés, amely egy jelentéktelen pétervári hivatalnok életét mutatja be, akinek sorsa egy új köpönyeg megszerzése és elvesztése után tragikus fordulatot vesz.\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
-      "mu_kelt": "2025-02-25",
-      "mu_link": "https://mek.oszk.hu/00300/00397/00397.htm"
+      "id": 1,
+      "title": "Vscode",
+      "link": "https://code.visualstudio.com/",
+      "icon": "icons/vsc.png"
     },
     {
-      "mu_id": 19,
-      "sz_id": 2,
-      "mu_cim": "Holt lelkek",
-      "mufaj_id": 10,
-      "me_leiras": "Szatirikus regény, amely az orosz társadalom visszásságait figurázza ki Csicsikov, a főhős kalandjain keresztül.",
-      "mu_kelt": "1842-05-21",
-      "mu_link": "https://mek.oszk.hu/00300/00391/html/index.htm"
+      "id": 2,
+      "title": "Discord",
+      "link": "https://discord.com/",
+      "icon": "icons/discord.png"
     },
     {
-      "mu_id": 20,
-      "sz_id": 15,
-      "mu_cim": "A gólyakalifa",
-      "mufaj_id": 10,
-      "me_leiras": "Babits Mihály regénye, amely egy tudathasadásos fiatalember történetét meséli el.",
-      "mu_kelt": "1916-01-01",
-      "mu_link": "https://mek.oszk.hu/00600/00600/html/index.htm"
+      "id": 3,
+      "title": "WireGuard",
+      "link": "https://www.wireguard.com/",
+      "icon": "icons/wireguard.png"
     },
     {
-      "mu_id": 21,
-      "sz_id": 15,
-      "mu_cim": "Húsvét előtt",
-      "mufaj_id": 1,
-      "me_leiras": "Babits Mihály híres verse, amely a háború borzalmait idézi.",
-      "mu_kelt": "1916-03-26",
-      "mu_link": "https://epa.oszk.hu/00000/00022/00195/06090.htm"
-    },
-    {
-      "mu_id": 22,
-      "sz_id": 16,
-      "mu_cim": "Édes Anna",
-      "mufaj_id": 10,
-      "me_leiras": "Kosztolányi Dezső regénye a cselédlány tragikus sorsáról.",
-      "mu_kelt": "1926-01-01",
-      "mu_link": "https://mek.oszk.hu/04700/04772/04772.htm"
-    },
-    {
-      "mu_id": 23,
-      "sz_id": 16,
-      "mu_cim": "Esti Kornél",
-      "mufaj_id": 3,
-      "me_leiras": "Kosztolányi elbeszéléskötete, amely egy titokzatos férfi életét mutatja be.",
-      "mu_kelt": "1933-01-01",
-      "mu_link": "https://mek.oszk.hu/00700/00744/00744.htm"
-    },
-    {
-      "mu_id": 24,
-      "sz_id": 17,
-      "mu_cim": "Anna örök",
-      "mufaj_id": 11,
-      "me_leiras": "Juhász Gyula megható szerelmi szonettje.",
-      "mu_kelt": "1928-01-01",
-      "mu_link": "https://mek.oszk.hu/17900/17934/17934.pdf"
-    },
-    {
-      "mu_id": 25,
-      "sz_id": 17,
-      "mu_cim": "Milyen volt...",
-      "mufaj_id": 1,
-      "me_leiras": "Egy nosztalgikus vers a szerelem emlékéről.",
-      "mu_kelt": "1930-01-01",
-      "mu_link": "https://mek.oszk.hu/00700/00709/html/vs191201.htm#01"
-    },
-    {
-      "mu_id": 26,
-      "sz_id": 18,
-      "mu_cim": "Góg és Magóg fia vagyok én...",
-      "mufaj_id": 1,
-      "me_leiras": "Ady Endre programversének tekinthető költemény.",
-      "mu_kelt": "1906-01-01",
-      "mu_link": "https://mek.oszk.hu/00500/00588/html/vers0101.htm"
-    },
-    {
-      "mu_id": 27,
-      "sz_id": 18,
-      "mu_cim": "Párizsban járt az ősz",
-      "mufaj_id": 1,
-      "me_leiras": "Egy szimbolista vers a múlandóságról.",
-      "mu_kelt": "1906-10-06",
-      "mu_link": "https://mek.oszk.hu/05500/05552/html/av0045.html"
-    },
-    {
-      "mu_id": 28,
-      "sz_id": 19,
-      "mu_cim": "Esti sugárkoszorú",
-      "mufaj_id": 11,
-      "me_leiras": "Tóth Árpád egyik legszebb szerelmes szonettje.",
-      "mu_kelt": "1923-01-01",
-      "mu_link": "https://www.arcanum.com/hu/online-kiadvanyok/Verstar-verstar-otven-kolto-osszes-verse-2/toth-arpad-1CABE/versek-1CAC3/esti-sugarkoszoru-1CF62/"
-    },
-    {
-      "mu_id": 29,
-      "sz_id": 19,
-      "mu_cim": "Lélektől lélekig",
-      "mufaj_id": 1,
-      "me_leiras": "Melankolikus vers az emberi kapcsolatok mélységeiről.",
-      "mu_kelt": "1928-01-01",
-      "mu_link": "https://mek.oszk.hu/01100/01112/01112.htm#178"
-    },
-    {
-      "mu_id": 30,
-      "sz_id": 20,
-      "mu_cim": "Puszták népe",
-      "mufaj_id": 12,
-      "me_leiras": "Illyés Gyula szociográfiai műve a magyar parasztság életéről.",
-      "mu_kelt": "1936-01-01",
-      "mu_link": "https://epa.oszk.hu/00000/00022/00605/19136.htm"
-    },
-    {
-      "mu_id": 31,
-      "sz_id": 20,
-      "mu_cim": "Egy mondat a zsarnokságról",
-      "mufaj_id": 1,
-      "me_leiras": "Egy híres politikai vers a diktatúrák természetéről.",
-      "mu_kelt": "1950-01-01",
-      "mu_link": "https://mek.oszk.hu/04300/04340/04340.htm#34"
+      "id": 4,
+      "title": "FileBrowser",
+      "link": "https://filebrowser.org/",
+      "icon": "icons/fb.png"
     }
   ],
-  "szerzők": [
+  "sources": [
     {
-      "sz_id": 2,
-      "sz_neve": "Nikolai Gogol",
-      "sz_szul_ido": "1809-04-01",
-      "sz_szul_hely": "Sorochyntsi",
-      "sz_halala": "1852-02-21",
-      "sz_leiras": "Nikolai Gogol orosz író volt, szatirikus művek szerzője. Gogol művei groteszkek és társadalmi kritikát tartalmaznak.",
-      "sz_kep": "img/gogol.png"
+      "id": 1,
+      "title": "ChatGPT",
+      "link": "https://chatgpt.com/",
+      "icon": "icons/chatgpt.png"
     },
     {
-      "sz_id": 15,
-      "sz_neve": "Babits Mihály",
-      "sz_szul_ido": "1883-11-26",
-      "sz_szul_hely": "Szekszárdcigány",
-      "sz_halala": "1941-08-04",
-      "sz_leiras": "Klasszikus műveltségű, filozofikus költő, a Nyugat vezéralakja.",
-      "sz_kep": "img/babits.jpg"
+      "id": 2,
+      "title": "Google",
+      "link": "https://google.hu",
+      "icon": "icons/google.png"
     },
     {
-      "sz_id": 16,
-      "sz_neve": "Kosztolányi Dezső",
-      "sz_szul_ido": "1885-03-29",
-      "sz_szul_hely": "Szabadka",
-      "sz_halala": "1936-11-03",
-      "sz_leiras": "Érzékeny, melankolikus költő, prózaíró, a Nyugat kiemelkedő alakja.",
-      "sz_kep": "img/kosztolanyi.jpg"
+      "id": 3,
+      "title": "Netacad",
+      "link": "https://www.netacad.com/",
+      "icon": "icons/netacad.png"
+    }
+  ],
+  "timeline_events": [
+    {
+      "id": 11,
+      "date": "2024-11-10",
+      "title": "Adatbázis",
+      "description": "Elkezdtük a PHP alapú weblapot fejleszteni."
     },
     {
-      "sz_id": 17,
-      "sz_neve": "Juhász Gyula",
-      "sz_szul_ido": "1883-04-04",
-      "sz_szul_hely": "Szeged",
-      "sz_halala": "1937-04-06",
-      "sz_leiras": "Melankolikus, nosztalgikus lírájú költő, a magyar szonett mestere.",
-      "sz_kep": "img/juhasz.jpg"
+      "id": 12,
+      "date": "2024-11-08",
+      "title": "Történelem",
+      "description": "Elkezdtük és be is fejeztük a prezentációt."
     },
     {
-      "sz_id": 18,
-      "sz_neve": "Ady Endre",
-      "sz_szul_ido": "1877-11-22",
-      "sz_szul_hely": "Érmindszent",
-      "sz_halala": "1919-01-27",
-      "sz_leiras": "Forradalmi, szimbolista költő, a Nyugat egyik vezető alakja.",
-      "sz_kep": "img/ady.jpg"
+      "id": 13,
+      "date": "2024-12-07",
+      "title": "Adatbázis",
+      "description": "Befejeztük a PHP alapú weblap fejlesztését."
     },
     {
-      "sz_id": 19,
-      "sz_neve": "Tóth Árpád",
-      "sz_szul_ido": "1886-04-14",
-      "sz_szul_hely": "Arad",
-      "sz_halala": "1928-11-07",
-      "sz_leiras": "Finom lírájú, melankolikus költő, a Nyugat második nemzedékének tagja.",
-      "sz_kep": "img/toth.jpg"
+      "id": 14,
+      "date": "2024-11-20",
+      "title": "Magyar",
+      "description": "Létrehoztuk a magyar projekthez a költők adatbázisát."
     },
     {
-      "sz_id": 20,
-      "sz_neve": "Illyés Gyula",
-      "sz_szul_ido": "1902-11-02",
-      "sz_szul_hely": "Felsőrácegrespuszta",
-      "sz_halala": "1983-04-15",
-      "sz_leiras": "Népi író, költő, politikai és társadalmi kérdésekre reflektált.",
-      "sz_kep": "img/illyes.jpg"
+      "id": 15,
+      "date": "2024-12-01",
+      "title": "Hálózat",
+      "description": "Lemodelleztük a kért hálózatot világháborús tematikával."
     }
   ],
   "users": [
     {
-      "id": 3,
-      "username": "admin",
-      "password_hash": "$2y$10$4JxssaYTpN9XG74CsBBza.mA1Nd/gSXGbKpg4XlrnjkRF6yO6TETC"
+      "id": 1,
+      "name": "Bodor Norbert",
+      "weboldal": "https://nrbrt.hu",
+      "image": "img/nrbrt.png"
+    },
+    {
+      "id": 2,
+      "name": "Véber-Jurassa Márk",
+      "weboldal": "https://markveber.hu",
+      "image": "img/markveber.png"
     }
   ]
 }
