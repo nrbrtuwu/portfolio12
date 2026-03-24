@@ -79,6 +79,7 @@ Ez volt szerintem az eddigi éveim legidőigényesebb féléve projektek szempon
 - Hálózatok (II. Világháborús hálózat és ahhoz tartozó feladatok)
 - IKT (Összefoglaló PPT, Dokumentáció)
 - Szerver és felhősz. (II. Világháborús Szerverek)
+- Szerver és felhősz. (II. Világháborús Szerverek)
 
 **Félévi összegzés**: Az összefoglaló nem volt olyan jó mint az előző, de attól még szerintem megint nagyon jól teljesítettünk.
 
