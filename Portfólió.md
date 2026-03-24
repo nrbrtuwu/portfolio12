@@ -84,5 +84,7 @@ Ez volt szerintem az eddigi éveim legidőigényesebb féléve projektek szempon
 **Félévi összegzés**: Az összefoglaló nem volt olyan jó mint az előző, de attól még szerintem megint nagyon jól teljesítettünk.
 
 ## 2. Félév
+Egyetlen projektet kaptunk, az ez a portfólió elkészítése volt, az eddigi tanéveinkből.
 
-Portfólió
+**Projektek**:
+- Portfólió (Az amit láttok jelenleg)
