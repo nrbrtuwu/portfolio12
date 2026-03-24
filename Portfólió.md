@@ -4,21 +4,18 @@
 Itt vezettem be magam igazán a HTML-be és a különféle tantárgyakba amit ez a szakma ajánl.
 
 **Projektek**:
-- Digitális kultúra
-- IKT Projekt
-- Programozási Alapok
+- Digitális kultúra (Első közös projekt)
+- Programozási Alapok (Template alapú statikus HTML weblap)
+- IKT Projekt (Összefoglaló PPT)
 
-**Félévi összegzés**: Ezek a projektek még csak a jéghegy tetején voltak, nem kellett semmi olyan nehéz dolgot elkészíteni.
+**Félévi összegzés**: Ezek a projektek még csak a jéghegy csúcsán voltak, nem kellett semmi olyan nehéz dolgot elkészíteni.
 
 ## 2. Félév
 Párban kellett dolgozni, ezzel is kitanulva a csapatmunka lényegét. Csapattársam ebben a félévben Martin volt.
 
 **Projektek**:
-- Digitális kultúra (elveszett a projekt)
-- IKT Projekt (elveszett a projekt)
-- Programozási alapok
 
-**Félévi összegzés**: Csapat munkában sokkal könnyebb és élvezhetőbb volt a projektek elkészítése. Nem kellett annyi tárgyból projektet csinálni mint az előző félévben.
+**Félévi összegzés**:Sajnos a második féléves projektjeim ebből a tanévből elvesztek. Csapat munkában sokkal könnyebb és élvezhetőbb volt a projektek elkészítése. Nem kellett annyi tárgyból projektet csinálni mint az előző félévben.
 
 ---
 # 10. évfolyam
@@ -28,11 +25,11 @@ Itt kezdődött el igazán a szakmai tárgyak tanulása. Ekkor lett Hálózatunk
 
 **Projektek**:
 - Fizika (Excel programozás)
-- ITA I. (Cisco PT hálózat elkészítése)
-- Programozási alapok (Weblap)
+- ITA I. (Egyszerú Cisco PT hálózat)
+- Programozási alapok (Template alapú statikus HTML weblap)
 - IKT Projekt (Összefoglaló PPT)
 
-**Félévi összegzés**: Csapatmunka finomítása (már ami volt :D). Az ITA végre valami nehezebb feladatot is adott.
+**Félévi összegzés**: Csapatmunka finomítására tökéletes volt ez a félév. Az egyetlen tantárgy ami ebben a félévben bármilyen kihivás lett volna, az az ITA volt
 
 ## 2. Félév
 Eljött az a félév, ahol nem volt rendes tantárgyi projekt, hanem csak szakmai tárgyakból voltak feladataink. Itt már Márk volt a csapattársam.
@@ -41,7 +38,7 @@ Eljött az a félév, ahol nem volt rendes tantárgyi projekt, hanem csak szakma
 - Fizika (excel program)
 - IKT Projekt (Összefoglaló PPT)
 - ITA I. (Cisco PT hálózat elkészítése)
-- Programozási alapok (Weblap, illetve játék elkészítése)
+- Programozási alapok (Weblap, illetve játék)
 
 **Félévi összegzés**: Ez volt az első élvezetes félévi projektem, minden feladatot könnyedén megoldottuk, sehol nem akadtunk el. Ekkor kezdtük el használni Prezit mint prezentáció készítő és bemutató.
 
@@ -53,7 +50,7 @@ Nem sokkal másabb mint az előző tanév 2. Félévi feladatai. Viszont lett eg
 
 **Projektek**:
 - Hálózatok (I. világháború hálózat és ahhoz tartozó feladatok)
-- Adatbázis kezelés (PHP weboldal készítése MySQL adatbázis kapcsolattal)
+- Adatbázis kezelés (PHP alapú weboldal MySQL adatbázis kapcsolattal)
 - IKT Projekt (Összefoglaló PPT)
 
 **Félévi összegzés**: Elkezdtük prezentációk normális elkészítését és azoknak az előadását, illetve a normális csapatmunkát.
