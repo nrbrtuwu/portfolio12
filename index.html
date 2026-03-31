@@ -10,9 +10,9 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css">
   <style>
     :root {
-      --bg: #08111c;
-      --bg-deep: #03080f;
-      --bg-warm: #16283d;
+      --bg: #0d1826;
+      --bg-deep: #07111b;
+      --bg-warm: #203750;
       --text: #f3f7fb;
       --muted: #9db0c3;
       --accent: #8ad8ff;
@@ -33,8 +33,9 @@
       min-height: 100%;
       overflow: hidden;
       background:
-        radial-gradient(circle at 12% 18%, rgba(54, 182, 255, 0.12), transparent 22%),
-        radial-gradient(circle at 88% 20%, rgba(138, 216, 255, 0.08), transparent 20%),
+        radial-gradient(circle at 12% 18%, rgba(98, 207, 255, 0.15), transparent 24%),
+        radial-gradient(circle at 88% 20%, rgba(167, 230, 255, 0.11), transparent 22%),
+        radial-gradient(circle at 50% 100%, rgba(98, 207, 255, 0.06), transparent 26%),
         linear-gradient(160deg, var(--bg-deep) 0%, var(--bg) 45%, var(--bg-warm) 100%);
       color: var(--text);
       font-family: "IBM Plex Sans", sans-serif;
@@ -76,7 +77,10 @@
 
     .slide {
       position: relative;
-      min-height: 100vh;
+      width: 100%;
+      height: 100%;
+      min-height: 100%;
+      box-sizing: border-box;
       padding: 6vh 7vw 10vh;
       display: flex;
       flex-direction: column;
@@ -95,18 +99,25 @@
       align-items: center;
       text-align: center;
       justify-content: center;
-      padding-top: 6vh;
-      padding-bottom: 6vh;
+      height: 100%;
+      min-height: 100%;
+      padding: 0 7vw;
     }
 
     .content {
       position: relative;
       z-index: 1;
       width: min(1300px, 100%);
+      margin-inline: auto;
     }
 
     .center-slide .content {
-      max-width: 980px;
+      width: min(980px, 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100%;
     }
 
     .eyebrow {
@@ -284,8 +295,8 @@
     .subject-slide .content {
       display: grid;
       width: min(1560px, 100%);
-      grid-template-columns: minmax(180px, 0.34fr) minmax(900px, 1.66fr);
-      gap: 220px;
+      grid-template-columns: minmax(180px, 0.37fr) minmax(840px, 1.5fr);
+      gap: 200px;
       align-items: center;
     }
 
@@ -327,7 +338,7 @@
 
     .preview-frame {
       position: relative;
-      min-height: min(72vh, 720px);
+      min-height: min(69vh, 680px);
       border-radius: 34px;
       overflow: hidden;
       border: 1px solid rgba(140, 226, 255, 0.34);
@@ -355,7 +366,7 @@
     }
 
     .preview-frame.has-site {
-      min-height: min(74vh, 760px);
+      min-height: min(71vh, 720px);
       background: rgba(4, 9, 15, 0.82);
       isolation: isolate;
       overscroll-behavior: contain;
@@ -375,7 +386,7 @@
       display: block;
       width: 100%;
       height: auto;
-      max-height: 82vh;
+      max-height: 78vh;
       object-fit: contain;
       background: rgba(5, 10, 16, 0.55);
     }
@@ -657,10 +668,10 @@
         const x = index * matrixFontSize;
         const glyph = randomMatrixChar();
 
-        matrixContext.fillStyle = "rgba(54, 182, 255, 0.18)";
+        matrixContext.fillStyle = "rgba(98, 207, 255, 0.28)";
         matrixContext.fillText(glyph, x, column.y);
 
-        matrixContext.fillStyle = "rgba(138, 216, 255, 0.05)";
+        matrixContext.fillStyle = "rgba(167, 230, 255, 0.1)";
         matrixContext.fillText(randomMatrixChar(), x, column.y - matrixFontSize * 1.4);
 
         column.y += matrixFontSize * column.speed * deltaSeconds * 4.2;
